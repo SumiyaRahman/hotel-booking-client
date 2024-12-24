@@ -2,12 +2,14 @@ import React from "react";
 import { FaUserGroup } from "react-icons/fa6";
 import { MdBorderLeft } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const AllRoomShowcase = ({ room }) => {
-  const { name, image, guests, squareFeet, price, description } = room;
+  const { _id, name, image, guests, squareFeet, price, description } = room;
+  const navigate = useNavigate();
 
   return (
-    <div className="border flex flex-col h-full">
+    <div className="border flex flex-col h-full cursor-pointer" onClick={() => navigate(`/rooms/${_id}`)}>
       <div
         className="h-64 w-full bg-cover bg-center relative"
         style={{ backgroundImage: `url(${image})` }}

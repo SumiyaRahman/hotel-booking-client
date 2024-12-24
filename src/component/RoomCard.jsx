@@ -1,14 +1,17 @@
 import React from "react";
 import { FaUserGroup } from "react-icons/fa6";
 import { MdBorderLeft } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const RoomCard = ({ room }) => {
-  const { name, image, guests, squareFeet, price } = room;
+  const { _id, name, image, guests, squareFeet, price } = room;
+  const navigate = useNavigate();
 
   return (
     <div
       className="h-64 w-full bg-cover bg-center relative mb-[100px]"
       style={{ backgroundImage: `url(${image})` }}
+      onClick={() => navigate(`/rooms/${_id}`)}
     >
       <div className="bg-black bg-opacity-40 h-full w-full flex flex-col justify-end text-white relative">
         <div className="flex justify-end">
