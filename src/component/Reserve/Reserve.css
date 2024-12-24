@@ -1,0 +1,8 @@
+.bg-reserve{
+    background-image: linear-gradient(to right, 
+    rgba(128, 126, 122, 0.49), rgba(128, 126, 122, 0.49)), url('../../assets/Images/reserve-bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+}

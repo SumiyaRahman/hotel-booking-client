@@ -1,20 +1,19 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Navbar from "../component/Navbar";
-import Banner from "../component/Banner";
+import Banner from "../component/Banner/Banner";
 import BookingForm from "../component/BookingForm";
 import WelcomeSection from "../component/WelcomeSection";
+import Reserve from "../component/Reserve/Reserve";
+import AllRooms from "../component/AllRooms";
 
 const MainLayout = () => {
   return (
     <div>
-      <div className="max-w-7xl mx-auto px-5">
-        <Navbar></Navbar>
-      </div>
       <Banner></Banner>
       <BookingForm></BookingForm>
-      <div className="max-w-5xl mx-auto px-5">
+      <div className="max-w-7xl mx-auto px-5">
         <WelcomeSection></WelcomeSection>
+        <Reserve></Reserve>
+        <AllRooms></AllRooms>
       </div>
     </div>
   );

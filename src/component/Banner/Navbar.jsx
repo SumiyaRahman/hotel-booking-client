@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import hotelLogo from '../assets/Images/hotelLogo.png'
+import hotelLogo from '../../assets/Images/hotelLogo.png'
 
 const Navbar = () => {
   const links = (
@@ -27,7 +27,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -48,7 +48,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow play-fair"
+            className="menu menu-sm dropdown-content text-white rounded-box z-[1] mt-3 w-52 p-2 shadow play-fair "
           >
             {links}
           </ul>
@@ -57,17 +57,17 @@ const Navbar = () => {
         <Link to='/'>
         <div className="flex items-center">
         <img className="w-16 md:w-20" src={hotelLogo} />
-        <span className="text-[#BA8A70] text-3xl play-fair hidden md:block">SERENE STAYS</span>
+        <span className="text-3xl play-fair tracking-wider hidden md:block text-white">SERENE STAYS</span>
         </div>
         </Link>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 play-fair">{links}</ul>
+        <ul className="menu menu-horizontal px-1 play-fair text-white">{links}</ul>
       </div>
       <div className="navbar-end gap-2 md:gap-5">
         <Link to="/register">
-          <span className="text-[#BA8A70] font-bold text-xs  md:text-base underline play-fair">
+          <span className="text-white font-bold text-xs  md:text-base underline play-fair">
             Register
           </span>
         </Link>

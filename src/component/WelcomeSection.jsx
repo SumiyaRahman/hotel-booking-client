@@ -5,11 +5,11 @@ import { FaFacebook, FaPinterest, FaTwitter } from "react-icons/fa";
 const WelcomeSection = () => {
   return (
     <div className='grid grid-cols-1 lg:grid-cols-2 justify-center items-center gap-10 py-[100px]'>
-        <div className='lg:relative'>
-            <img className='' src={welcome}/>
-            <div className='lg:absolute bg-[#C19B77] w-full lg:w-52 text-center lg:border-[12px] lg:border-white left-[-40px] top-[350px]'>
+        <div className='xl:relative'>
+            <img src={welcome}/>
+            <div className='xl:absolute bg-[#C19B77] w-full xl:w-60 text-center xl:border-[12px] xl:border-white left-[-50px] top-[460px]'>
                 <h1 className='text-8xl text-white play-fair mb-4'>24</h1>
-                <p className='text-sm tracking-widest text-white font-light pb-6'>Years of Experience</p>
+                <p className='text-sm tracking-widest text-white font-light pb-9'>Years of Experience</p>
             </div>
         </div>
 
@@ -28,17 +28,17 @@ const WelcomeSection = () => {
                     <div>
                         <ul className='flex gap-6 text-[#727272]'>
                             <li>
-                                <a href="https://www.facebook.com">
+                                <a className='cursor-pointer' href="https://www.facebook.com" target='_blank'>
                                 <FaFacebook></FaFacebook>
                                 </a>
                             </li>
                             <li>
-                                <a href="https://www.twitter.com">
+                                <a className='cursor-pointer' href="https://www.twitter.com" target='_blank'>
                                 <FaTwitter></FaTwitter>
                                 </a>
                             </li>
                             <li>
-                                <a href="https://www.pinterest.com">
+                                <a className='cursor-pointer' href="https://www.pinterest.com" target='_blank'>
                                 <FaPinterest></FaPinterest>
                                 </a>
                             </li>
