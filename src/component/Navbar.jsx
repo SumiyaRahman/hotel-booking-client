@@ -56,8 +56,8 @@ const Navbar = () => {
         <div>
         <Link to='/'>
         <div className="flex items-center">
-        <img className="w-20" src={hotelLogo} />
-        <span className="text-[#BA8A70] text-3xl play-fair">SERENE STAYS</span>
+        <img className="w-16 md:w-20" src={hotelLogo} />
+        <span className="text-[#BA8A70] text-3xl play-fair hidden md:block">SERENE STAYS</span>
         </div>
         </Link>
         </div>
@@ -65,14 +65,14 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 play-fair">{links}</ul>
       </div>
-      <div className="navbar-end gap-5">
+      <div className="navbar-end gap-2 md:gap-5">
         <Link to="/register">
-          <span className="text-[#BA8A70] font-bold text-base underline play-fair">
+          <span className="text-[#BA8A70] font-bold text-xs  md:text-base underline play-fair">
             Register
           </span>
         </Link>
         <Link to="/signIn">
-          <button className="py-2 px-5 rounded bg-[#BA8A70] text-[#FFFFFF] font-bold text-base play-fair">
+          <button className="py-1 px-2 md:py-2 md:px-5 rounded bg-[#BA8A70] text-[#FFFFFF] font-bold text-xs md:text-base play-fair">
             Sign In
           </button>
         </Link>
