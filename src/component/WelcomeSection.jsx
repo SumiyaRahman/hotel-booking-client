@@ -1,5 +1,5 @@
 import React from 'react';
-import welcome from '../assets/Images/welcome-spa.jpg'
+import welcome from '../assets/Images/Images/welcome-spa.jpg'
 import { FaFacebook, FaPinterest, FaTwitter } from "react-icons/fa";
 
 const WelcomeSection = () => {

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AllRoomShowcase from "./AllRoomShowcase";
+import Navbar from "../component/Banner/Navbar";
+import Footer from "../component/Footer";
 
 const Rooms = () => {
     const [rooms, setRooms] = useState([]);
@@ -14,7 +16,9 @@ const Rooms = () => {
   }, []);
 
   return (
-    <section className="max-w-7xl mx-auto">
+    <section>
+        <div className="max-w-7xl mx-auto">
+        <Navbar></Navbar>
       <div>
         <h1 className="play-fair text-5xl leading-[4rem] mb-5 text-[#1C1C1C] text-center py-10">
           All Rooms
@@ -25,6 +29,8 @@ const Rooms = () => {
             <AllRoomShowcase key={room._id} room={room}></AllRoomShowcase>
         ))}
       </div>
+        </div>
+      <Footer></Footer>
     </section>
   );
 };

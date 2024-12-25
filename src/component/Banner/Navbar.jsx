@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import hotelLogo from '../../assets/Images/hotelLogo.png'
+import hotelLogo from "../../assets/Images/Images/hotelLogo.png";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext) || {};
+
   const links = (
     <>
       <li>
@@ -54,29 +57,52 @@ const Navbar = () => {
           </ul>
         </div>
         <div>
-        <Link to='/'>
-        <div className="flex items-center">
-        <img className="w-16 md:w-20" src={hotelLogo} />
-        <span className="text-3xl play-fair tracking-wider hidden md:block text-white">SERENE STAYS</span>
-        </div>
-        </Link>
+          <Link to="/">
+            <div className="flex items-center">
+              <img className="w-16 md:w-20" src={hotelLogo} />
+              <span className="text-3xl play-fair tracking-wider hidden md:block text-[#1C1C1C]">
+                SERENE STAYS
+              </span>
+            </div>
+          </Link>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 play-fair text-white">{links}</ul>
+        <ul className="menu menu-horizontal px-1 play-fair text-[#1C1C1C]">
+          {links}
+        </ul>
       </div>
-      <div className="navbar-end gap-2 md:gap-5">
-        <Link to="/register">
-          <span className="text-white font-bold text-xs  md:text-base underline play-fair">
-            Register
-          </span>
-        </Link>
-        <Link to="/signIn">
-          <button className="py-1 px-2 md:py-2 md:px-5 rounded bg-[#BA8A70] text-[#FFFFFF] font-bold text-xs md:text-base play-fair">
-            Sign In
+      {user && user?.email ? (
+        <div className="flex items-center gap-3">
+          <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
+            <img
+              className="h-12 w-12 rounded-full cursor-pointer"
+              src={user?.photoURL}
+              alt="User Avatar"
+            />
+          </div>
+          <button
+            onClick={logOut}
+            className="btn bg-[#00CC99] text-white flex items-center"
+          >
+            <span className="hidden lg:inline">Log Out</span>
+            <IoMdLogOut className="lg:hidden text-x" />
           </button>
-        </Link>
-      </div>
+        </div>
+      ) : (
+        <div className="navbar-end gap-2 md:gap-5">
+          <Link to="/auth/register">
+            <span className="text-[#1C1C1C] font-bold text-xs  md:text-base underline play-fair">
+              Register
+            </span>
+          </Link>
+          <Link to="/auth/login">
+            <button className="py-1 px-2 md:py-2 md:px-5 rounded bg-[#BA8A70] text-[#FFFFFF] font-bold text-xs md:text-base play-fair">
+              Log in
+            </button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

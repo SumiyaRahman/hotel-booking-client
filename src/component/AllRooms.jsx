@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 
 const AllRooms = () => {
   const [rooms, setRooms] = useState([]);
-  const navigate = useNavigate(); 
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     fetch("http://localhost:5000/rooms")
       .then((res) => res.json())
       .then((data) => {
         console.log(data); // Check response in the console
-        setRooms(data.slice(0, 3)); 
+        setRooms(data.slice(0, 6));
       })
       .catch((err) => console.log("Error:", err)); // Log errors
   }, []);
@@ -43,18 +43,15 @@ const AllRooms = () => {
             sit amet id dui. Integer gravida dolor elit, sit amet vestibulum mi
             elementum eget.
           </p>
-          <button
-            onClick={() => navigate("/rooms")}
-            className="bg-[#373737] text-white uppercase text-xs font-semibold tracking-[0.3rem] px-8 py-3 hover:bg-gray-700"
-          >
-            View All
-          </button>
+          <button onClick={() => navigate("/rooms")}  className="bg-[#373737] text-white uppercase text-xs font-semibold tracking-[0.3rem] px-8 py-3 hover:bg-gray-700">
+              View All
+            </button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mt-10">
         {rooms.map((room) => (
-            <RoomCard key={room._id} room={room}></RoomCard>
+          <RoomCard key={room._id} room={room}></RoomCard>
         ))}
       </div>
     </section>

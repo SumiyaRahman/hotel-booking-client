@@ -1,12 +1,10 @@
 import React from "react";
 import "./Banner.css";
-import Navbar from "./Navbar";
 
 const Banner = () => {
   return (
     <div className="bg-img">
       <div className="max-w-7xl mx-auto px-5">
-        <Navbar></Navbar>
         <div className="pt-[200px]">
           <p className="uppercase text-[#C19B77] text-xs font-semibold tracking-[0.3rem]">
             Book your room now!
