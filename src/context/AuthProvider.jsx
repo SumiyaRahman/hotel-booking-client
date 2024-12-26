@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
     signInUser,
     signOutUser,
     signInWithGoogle,
-    signInWithGitHub, // Added GitHub auth here
+    signInWithGitHub, 
   };
 
   return (

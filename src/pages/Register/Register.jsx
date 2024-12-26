@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../component/Banner/Navbar";
 import Footer from "../../component/Footer";
 
@@ -15,6 +15,8 @@ const Register = () => {
 
     // Get form values
     const form = e.target;
+    const firstName = form.firstName.value.trim();
+    const lastName = form.lastName.value.trim();
     const email = form.email.value.trim(); // Trim whitespace
     const password = form.password.value;
 
@@ -41,6 +43,29 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         console.log("User created successfully:", result.user);
+
+        // Add user data to database
+        fetch('http://localhost:5000/addUser', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email,
+            name: `${firstName} ${lastName}`,
+            photoURL: "",
+            providerId: "email-password",
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.message === "User added successfully") {
+              alert("User successfully added to the database");
+            } else {
+              alert("User already exists");
+            }
+          });
+
         form.reset(); // Reset the form after successful registration
         navigate("/"); // Redirect to home page
       })
@@ -65,6 +90,34 @@ const Register = () => {
               <h1 className="text-5xl font-bold text-[#373737]">
                 Register now!
               </h1>
+
+              {/* First Name Input */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">First Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="Enter your first name"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
+
+              {/* Last Name Input */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Last Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Enter your last name"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
 
               {/* Email Input */}
               <div className="form-control">
@@ -104,6 +157,12 @@ const Register = () => {
                 </button>
               </div>
             </form>
+            <p className="text-xs md:text-sm font-medium text-center text-[#403F3F] pb-5">
+            Already Have An Account?{" "}
+            <Link to="/signin" className="text-[#c19b77] font-semibold underline">
+              Login
+            </Link>
+          </p>
           </div>
         </div>
       </div>

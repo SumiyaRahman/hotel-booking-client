@@ -16,7 +16,7 @@ const AllRoomShowcase = ({ room }) => {
       <div className="bg-black bg-opacity-40 h-full w-full flex flex-col justify-end text-white relative">
         <div className="flex justify-end">
           <div className="absolute bg-[#C19B77] text-center w-32 top-[30px]">
-            <button onClick={() => navigate(`/rooms/${_id}`)} className=" py-2 tracking-[0.2rem] text-xs">Book Now</button>
+            <p className=" py-2 tracking-[0.2rem] text-xs">Price {price}$</p>
           </div>
         </div>
         <div className="pl-6 pb-6">

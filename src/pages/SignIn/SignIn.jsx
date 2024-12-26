@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import google from '../../assets/Images/Images/google.png'
 import github from '../../assets/Images/Images/github.png'
@@ -144,6 +144,13 @@ const SignIn = () => {
               Sign in with GitHub
             </span>
           </button>
+
+          <p className="text-xs md:text-sm font-medium text-center text-[#403F3F] mt-7">
+            Don’t Have An Account?{" "}
+            <Link to="/register" className="text-[#c19b77] font-semibold underline">
+              Register
+            </Link>
+          </p>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import RoomDetails from "../pages/RoomDetails";
 import PrivateRoute from "./PrivateRoute";
 import Register from "../pages/Register/Register";
 import SignIn from "../pages/SignIn/SignIn";
+import About from "../pages/About";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,16 +21,20 @@ const router = createBrowserRouter([
   },
   {
     path: "/rooms",
-    element: <Rooms></Rooms>
+    element: <Rooms></Rooms>,
   },
   {
-    path: "/rooms/:id", 
-    element: <PrivateRoute>
-      <RoomDetails></RoomDetails>
-    </PrivateRoute>,
-    loader: ({params}) => fetch(`https://hotel-booking-server-plum-five.vercel.app/rooms/${params.id}`)
+    path: "/rooms/:id",
+    element: (
+      <PrivateRoute>
+        <RoomDetails></RoomDetails>
+      </PrivateRoute>
+    ),
   },
-  
+  {
+    path: "/about",
+    element: <About></About>,
+  },
   {
     path: "/register",
     element: <Register></Register>,
