@@ -47,4 +47,28 @@
     width: 100%;
     height: 500px;
 }
+.breakfast{
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.337), rgba(0, 0, 0, 0.37)),url('../src/assets/Images/Around Hotel Img/breakfast.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 500px;
+}
+.wedding{
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.337), rgba(0, 0, 0, 0.37)),url('../src/assets/Images/Around Hotel Img/wedding.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 500px;
+}
+.juice{
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.337), rgba(0, 0, 0, 0.37)),url('../src/assets/Images/Around Hotel Img/juice.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 500px;
+}
 

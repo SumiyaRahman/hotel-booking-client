@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import { FaUserGroup } from "react-icons/fa6";
 import { MdBorderLeft } from "react-icons/md";
 import { MdOutlineBalcony } from "react-icons/md";
 import { useParams } from "react-router-dom"; // <-- Use params to get ID from URL
@@ -9,10 +8,11 @@ import AuthContext from "../context/AuthContext";
 import BookingWidget from "../component/BookingWidget";
 import { IoBedOutline, IoWifiOutline } from "react-icons/io5";
 import { IoTvOutline } from "react-icons/io5";
-import { PiHairDryerLight } from "react-icons/pi";
-import { BiDrink } from "react-icons/bi";
+import { BiDollar } from "react-icons/bi";
 import deluxe from "../assets/Images/Room Images/deluxe suite.jpg";
 import honey from "../assets/Images/Room Images/honeymoon suite.jpg";
+import { HiOutlineUsers } from "react-icons/hi";
+import { IoDocumentAttachOutline } from "react-icons/io5";
 
 const RoomDetails = () => {
   const { user } = useContext(AuthContext);
@@ -27,12 +27,14 @@ const RoomDetails = () => {
   useEffect(() => {
     const fetchRoomDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/rooms/${id}/details`); // Correct endpoint
-  
+        const response = await fetch(
+          `http://localhost:5000/rooms/${id}/details`
+        ); // Correct endpoint
+
         if (!response.ok) {
           throw new Error("Failed to fetch room details.");
         }
-  
+
         const data = await response.json();
         setRoom(data.room); // Set room details
         setReviews(data.reviews); // Set reviews from response
@@ -43,10 +45,10 @@ const RoomDetails = () => {
         setLoading(false);
       }
     };
-  
+
     fetchRoomDetails(); // Call fetch function
   }, [id]); // Dependency: re-fetch if ID changes
-  
+
   // Show loading state
   if (loading) {
     return <p className="text-center py-10">Loading...</p>;
@@ -66,29 +68,35 @@ const RoomDetails = () => {
       <div className="max-w-7xl mx-auto py-5">
         <Navbar></Navbar>
       </div>
-      <div className="max-w-5xl mx-auto py-5">
+      <div className="max-w-6xl mx-auto py-5">
         <div>
           <h1 className="text-4xl play-fair font-light">{name}</h1>
           <p className="text-[#ACACAC] font-light text-sm tracking-wider mt-2">
             {description}
           </p>
-          <div className="flex flex-col xl:flex-row gap-8 mt-8">
+          <div className="flex flex-col xl:flex-row gap-10 mt-8">
             {/* Image */}
             <div className="w-2/3">
-              <img src={image} alt={name} className="mb-5" />
-              <div className="flex justify-between text-lg text-[#ACACAC] my-10">
-                <span>
-                  <FaUserGroup className="inline mr-2 font-light" /> {guests}{" "}
-                  Guests
+              <img src={image} alt={name} className="w-full mb-5" />
+              <div className="flex justify-between text-[#ACACAC] my-10 font-light">
+                <span className="flex items-center">
+                  <HiOutlineUsers className="mr-2 font-light text-2xl" />{" "}
+                  <span className="uppercase tracking-[0.1rem]">
+                    {guests} Guests
+                  </span>
                 </span>
-                <span>
-                  <MdBorderLeft className="inline mr-2 font-light" />{" "}
-                  {squareFeet} ft²
+                <span className="flex items-center ">
+                  <MdBorderLeft className="mr-2 font-light text-2xl" />{" "}
+                  <span className="uppercase tracking-[0.1rem]">
+                    {squareFeet} ft²
+                  </span>
                 </span>
-                <span className="text-green-500 font-medium">
-                  ${price}/night
+                <span className="flex items-center">
+                  <BiDollar className="mr-2 font-light text-2xl" />
+                  <span className="uppercase tracking-[0.1rem]">
+                    {price}/night
+                  </span>
                 </span>
-                <span className="text-green-500font-light">Week price</span>
               </div>
               <hr />
               <div className="my-10">
@@ -150,35 +158,10 @@ const RoomDetails = () => {
                   </p>
                 )}
               </div>
-
-              <div className="my-10">
-                <h1 className="text-4xl play-fair font-light">
-                  Around The Hotel
-                </h1>
-                <div className="grid grid-cols-2 gap-5 mt-10">
-                  <div className="spa relative">
-                    <div className="text-white absolute bottom-0 play-fair text-2xl font-semibold tracking-wider">
-                      <p className="p-5">Wellness Spa</p>
-                    </div>
-                  </div>
-                  <div className="coffee relative">
-                    <div className="text-white absolute bottom-0 play-fair text-2xl font-semibold tracking-wider">
-                      <p className="p-5">Coffee Corner</p>
-                    </div>
-                  </div>
-                  <div className="pool relative">
-                    <div className="text-white absolute bottom-0 play-fair text-2xl font-semibold tracking-wider">
-                      <p className="p-5">Pool Side</p>
-                    </div>
-                  </div>
-                  <div className="dining relative">
-                    <div className="text-white absolute bottom-0 play-fair text-2xl font-semibold tracking-wider">
-                      <p className="p-5">Dining</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <hr className="mt-10" />
             </div>
+
+            {/* right side */}
             <div className="">
               <div>
                 <BookingWidget room={room} uid={uid} />
@@ -228,9 +211,76 @@ const RoomDetails = () => {
                   </div>
                 </div>
               </div>
+              {/* documents */}
+              <div>
+                <h1 className="text-3xl play-fair font-light mt-10">
+                  Documents
+                </h1>
+                <div className="mt-5 space-y-5">
+                  <div className="flex items-center gap-6">
+                    <div className="bg-[#c19b77] inline-block py-3 px-3">
+                      <IoDocumentAttachOutline className="text-xl text-white" />
+                    </div>
+                    <p className="tracking-[0.1rem] font-light text-sm text-[#ACACAC]">
+                      Conditions of Hospitality
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-6">
+                    <div className="bg-[#393939] inline-block py-3 px-3">
+                      <IoDocumentAttachOutline className="text-xl text-white" />
+                    </div>
+                    <p className="tracking-[0.1rem] font-light text-sm text-[#ACACAC]">
+                      Fire Rules of the Hotel
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-6">
+                    <div className="bg-[#c19b77] inline-block py-3 px-3">
+                      <IoDocumentAttachOutline className="text-xl text-white" />
+                    </div>
+                    <p className="tracking-[0.1rem] font-light text-sm text-[#ACACAC]">
+                      Seasonal Room Rates
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <div className="my-10">
+            <h1 className="text-4xl play-fair font-light">Around The Hotel</h1>
+            <div className="grid grid-cols-3 gap-5 mt-10">
+              <div className="spa relative">
+                <div className="text-white absolute bottom-0 play-fair text-2xl font-semibold tracking-wider">
+                  <p className="p-5">Wellness Spa</p>
+                </div>
+              </div>
+              <div className="coffee relative">
+                <div className="text-white absolute bottom-0 play-fair text-2xl font-semibold tracking-wider">
+                  <p className="p-5">Coffee Corner</p>
+                </div>
+              </div>
+              <div className="pool relative">
+                <div className="text-white absolute bottom-0 play-fair text-2xl font-semibold tracking-wider">
+                  <p className="p-5">Pool Side</p>
+                </div>
+              </div>
+              <div className="dining relative">
+                <div className="text-white absolute bottom-0 play-fair text-2xl font-semibold tracking-wider">
+                  <p className="p-5">Dining</p>
+                </div>
+              </div>
+              <div className="juice relative">
+                <div className="text-white absolute bottom-0 play-fair text-2xl font-semibold tracking-wider">
+                  <p className="p-5">Juice Bar</p>
+                </div>
+              </div>
+              <div className="wedding relative">
+                <div className="text-white absolute bottom-0 play-fair text-2xl font-semibold tracking-wider">
+                  <p className="p-5">Wedding Hall</p>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
 
       <Footer></Footer>
