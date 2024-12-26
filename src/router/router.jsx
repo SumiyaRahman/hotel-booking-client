@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import Register from "../pages/Register/Register";
 import SignIn from "../pages/SignIn/SignIn";
 import About from "../pages/About";
+import MyBookings from "../pages/MyBookings";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,14 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <RoomDetails></RoomDetails>
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/myBookings",
+    element: (
+      <PrivateRoute>
+        <MyBookings />
       </PrivateRoute>
     ),
   },

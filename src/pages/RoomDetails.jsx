@@ -1,48 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { FaUserGroup } from "react-icons/fa6";
 import { MdBorderLeft } from "react-icons/md";
 import { MdOutlineBalcony } from "react-icons/md";
 import { useParams } from "react-router-dom"; // <-- Use params to get ID from URL
 import Navbar from "../component/Banner/Navbar";
 import Footer from "../component/Footer";
+import AuthContext from "../context/AuthContext";
 import BookingWidget from "../component/BookingWidget";
 import { IoBedOutline, IoWifiOutline } from "react-icons/io5";
 import { IoTvOutline } from "react-icons/io5";
 import { PiHairDryerLight } from "react-icons/pi";
 import { BiDrink } from "react-icons/bi";
-import deluxe from '../assets/Images/Room Images/deluxe suite.jpg'
-import honey from '../assets/Images/Room Images/honeymoon suite.jpg'
+import deluxe from "../assets/Images/Room Images/deluxe suite.jpg";
+import honey from "../assets/Images/Room Images/honeymoon suite.jpg";
 
 const RoomDetails = () => {
+  const { user } = useContext(AuthContext);
+  const uid = user?.uid;
   const { id } = useParams(); // <-- Get room ID from URL
   const [room, setRoom] = useState(null); // State for storing room data
+  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true); // State for loading indicator
   const [error, setError] = useState(null); // State for error handling
 
   // Fetch room details
   useEffect(() => {
-    const fetchRoom = async () => {
+    const fetchRoomDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/rooms/${id}`);
-
-        // Check if response is okay
+        const response = await fetch(`http://localhost:5000/rooms/${id}/details`); // Correct endpoint
+  
         if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
+          throw new Error("Failed to fetch room details.");
         }
-
+  
         const data = await response.json();
-        setRoom(data); // Update state with room data
-        setLoading(false); // Disable loading
+        setRoom(data.room); // Set room details
+        setReviews(data.reviews); // Set reviews from response
+        setLoading(false);
       } catch (err) {
-        console.error("Error fetching room data:", err.message);
+        console.error("Error fetching room details:", err.message);
         setError(err.message);
-        setLoading(false); // Disable loading
+        setLoading(false);
       }
     };
-
-    fetchRoom(); // Call fetch function
+  
+    fetchRoomDetails(); // Call fetch function
   }, [id]); // Dependency: re-fetch if ID changes
-
+  
   // Show loading state
   if (loading) {
     return <p className="text-center py-10">Loading...</p>;
@@ -54,7 +58,7 @@ const RoomDetails = () => {
   }
 
   // Destructure room data if available
-  const { name, image, description, guests, squareFeet, price, features } =
+  const { _id, name, image, description, guests, squareFeet, price, features } =
     room || {};
 
   return (
@@ -126,6 +130,27 @@ const RoomDetails = () => {
               </div>
               <hr />
 
+              <div className="mt-10">
+                <h2 className="text-3xl font-light mb-6">Reviews</h2>
+                {reviews.length > 0 ? (
+                  <div className="space-y-5">
+                    {reviews.map((review) => (
+                      <div
+                        key={review._id}
+                        className="p-5 border rounded-lg shadow-md"
+                      >
+                        <p className="mt-2">Rating: {review.rating}/5</p>
+                        <p className="mt-2 text-gray-700">{review.comment}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-gray-500 italic">
+                    No reviews available for this room.
+                  </p>
+                )}
+              </div>
+
               <div className="my-10">
                 <h1 className="text-4xl play-fair font-light">
                   Around The Hotel
@@ -156,7 +181,7 @@ const RoomDetails = () => {
             </div>
             <div className="">
               <div>
-                <BookingWidget></BookingWidget>
+                <BookingWidget room={room} uid={uid} />
               </div>
               <div>
                 <h1 className="text-3xl play-fair font-light my-10">
