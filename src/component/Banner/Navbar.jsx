@@ -1,11 +1,21 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import hotelLogo from "../../assets/Images/Images/hotelLogo.png";
-import { AuthContext } from "../../provider/AuthProvider";
+import AuthContext from "../../context/AuthContext";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext) || {};
+  const { user, signOutUser } = useContext(AuthContext);
 
+  const handleSignOut = () => {
+    signOutUser()
+    .then(() => {
+      console.log('successful sign out');
+    })
+    .catch(error => {
+      console.log('failed to sign out', error.message);
+      
+    })
+  }
   const links = (
     <>
       <li>
@@ -72,37 +82,28 @@ const Navbar = () => {
           {links}
         </ul>
       </div>
-      {user && user?.email ? (
-        <div className="flex items-center gap-3">
-          <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
-            <img
-              className="h-12 w-12 rounded-full cursor-pointer"
-              src={user?.photoURL}
-              alt="User Avatar"
-            />
-          </div>
-          <button
-            onClick={logOut}
-            className="btn bg-[#00CC99] text-white flex items-center"
-          >
-            <span className="hidden lg:inline">Log Out</span>
-            <IoMdLogOut className="lg:hidden text-x" />
-          </button>
+      <div className="navbar-end space-x-4">
+          {user ? (
+            <>
+              <button onClick={handleSignOut} className="py-2 px-5 rounded bg-[#c19b77] text-white font-bold text-base">
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/register">
+                <span className="text-[#373737] font-bold text-base underline">
+                  Register
+                </span>
+              </Link>
+              <Link to="/signIn">
+                <button className="py-2 px-5 rounded bg-[#c19b77] text-white font-bold text-base">
+                  Sign In
+                </button>
+              </Link>
+            </>
+          )}
         </div>
-      ) : (
-        <div className="navbar-end gap-2 md:gap-5">
-          <Link to="/auth/register">
-            <span className="text-[#1C1C1C] font-bold text-xs  md:text-base underline play-fair">
-              Register
-            </span>
-          </Link>
-          <Link to="/auth/login">
-            <button className="py-1 px-2 md:py-2 md:px-5 rounded bg-[#BA8A70] text-[#FFFFFF] font-bold text-xs md:text-base play-fair">
-              Log in
-            </button>
-          </Link>
-        </div>
-      )}
     </div>
   );
 };

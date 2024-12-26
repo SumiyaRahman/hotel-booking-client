@@ -4,10 +4,9 @@ import Home from "../pages/Home";
 import ErrorPage from "../pages/ErrorPage";
 import Rooms from "../pages/Rooms";
 import RoomDetails from "../pages/RoomDetails";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import AuthLayout from "../layout/AuthLayout";
-
+import PrivateRoute from "./PrivateRoute";
+import Register from "../pages/Register/Register";
+import SignIn from "../pages/SignIn/SignIn";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,22 +24,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/rooms/:id", 
-    element: <RoomDetails></RoomDetails>,
-    loader: ({params}) => fetch(`http://localhost:5000/rooms/${params.id}`)
+    element: <PrivateRoute>
+      <RoomDetails></RoomDetails>
+    </PrivateRoute>,
+    loader: ({params}) => fetch(`https://hotel-booking-server-plum-five.vercel.app/rooms/${params.id}`)
+  },
+  
+  {
+    path: "/register",
+    element: <Register></Register>,
   },
   {
-    path: "auth",
-    element: <AuthLayout></AuthLayout>,
-    children: [
-      {
-        path: "/auth/login",
-        element: <Login></Login>,
-      },
-      {
-        path: "/auth/register",
-        element: <Register></Register>,
-      },
-    ],
+    path: "/signIn",
+    element: <SignIn></SignIn>,
   },
   {
     path: "*",
