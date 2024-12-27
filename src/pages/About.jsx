@@ -5,10 +5,19 @@ import { GiHouseKeys } from "react-icons/gi";
 import Footer from "../component/Footer";
 import manager from "../assets/Images/Images/manager.jpg"
 import sign from "../assets/Images/Images/sign.png"
+import { Helmet } from "react-helmet";
 
 const About = () => {
   return (
     <div>
+        <Helmet>
+        <title>Hotel Serenity - About Us</title>
+        <meta
+          name="description"
+          content="Learn more about Hotel Serenity, where luxury meets comfort."
+        />
+        <meta name="keywords" content="about, hotel, serenity, luxury, comfort" />
+      </Helmet>
       <div className="mx-auto max-w-7xl">
         <Navbar></Navbar>
       </div>
@@ -24,7 +33,7 @@ const About = () => {
         }}
         className="flex flex-col justify-center items-center px-5"
       >
-        <h1 className="play-fair text-4xl md:text-6xl leading-[4rem] text-white mt-2">
+        <h1 className="uppercase play-fair text-4xl md:text-6xl leading-[4rem] text-white mt-2">
           About Us
         </h1>
         {/* Subtitle */}
@@ -62,34 +71,22 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
               <p className="leading-[1.5rem] md:leading-[1.9rem] text-xs md:text-sm text-[#ACACAC] font-light tracking-widest">
-                Nestled in nature's embrace, Serenity Stay Hotel offers an
-                exquisite blend of elegance and comfort. Whether you're here for
-                relaxation, adventure, or business, enjoy modern amenities,
-                personalized services, and breathtaking views.
+              At Hotel Serenity, we believe in creating a peaceful sanctuary for our guests. Whether you are here for a romantic getaway or a family vacation, our rooms offer the perfect blend of comfort, luxury, and modern amenities.
               </p>
             </div>
             <div>
               <p className="leading-[1.5rem] md:leading-[1.9rem] text-xs md:text-sm text-[#ACACAC] font-light tracking-widest">
-                Nestled in nature's embrace, Serenity Stay Hotel offers an
-                exquisite blend of elegance and comfort. Whether you're here for
-                relaxation, adventure, or business, enjoy modern amenities,
-                personalized services, and breathtaking views.
+              Indulge in exceptional service and a serene atmosphere, all designed to meet your needs and exceed your expectations. From spacious suites to top-tier dining, your experience at Hotel Serenity will be one to remember.
               </p>
             </div>
             <div>
               <p className="leading-[1.5rem] md:leading-[1.9rem] text-xs md:text-sm text-[#ACACAC] font-light tracking-widest">
-                Nestled in nature's embrace, Serenity Stay Hotel offers an
-                exquisite blend of elegance and comfort. Whether you're here for
-                relaxation, adventure, or business, enjoy modern amenities,
-                personalized services, and breathtaking views.
+              Whether you're here to relax or explore the surroundings, Hotel Serenity offers a range of services to suit every guest. Discover the true meaning of luxury and relaxation.
               </p>
             </div>
             <div>
               <p className="leading-[1.5rem] md:leading-[1.9rem] text-xs md:text-sm text-[#ACACAC] font-light tracking-widest">
-                Nestled in nature's embrace, Serenity Stay Hotel offers an
-                exquisite blend of elegance and comfort. Whether you're here for
-                relaxation, adventure, or business, enjoy modern amenities,
-                personalized services, and breathtaking views.
+              Our dedicated staff is here to assist you, ensuring a seamless experience from check-in to check-out. Experience world-class hospitality that will make you feel right at home.
               </p>
             </div>
           </div>

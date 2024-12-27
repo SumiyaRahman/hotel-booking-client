@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AllRoomShowcase from "./AllRoomShowcase";
 import Navbar from "../component/Banner/Navbar";
 import Footer from "../component/Footer";
+import { Helmet } from "react-helmet";
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
@@ -39,6 +40,15 @@ const Rooms = () => {
 
   return (
     <section>
+      <Helmet>
+  <title>Hotel Serenity - All Rooms</title>
+  <meta
+    name="description"
+    content="Explore the rooms available at Hotel Serenity and find the perfect one for you."
+  />
+  <meta name="keywords" content="rooms, hotel, serenity, explore, book" />
+</Helmet>
+
       <div className="max-w-7xl mx-auto px-5">
         <Navbar></Navbar>
         <div>

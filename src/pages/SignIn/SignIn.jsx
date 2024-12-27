@@ -5,6 +5,7 @@ import google from "../../assets/Images/Images/google.png";
 import github from "../../assets/Images/Images/github.png";
 import Navbar from "../../component/Banner/Navbar";
 import Footer from "../../component/Footer";
+import { Helmet } from "react-helmet";
 
 const SignIn = () => {
   const { signInUser, signInWithGoogle, signInWithGitHub } =
@@ -96,6 +97,14 @@ const SignIn = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Hotel Serenity - Sign In</title>
+        <meta
+          name="description"
+          content="Sign in to your Hotel Serenity account to access your bookings."
+        />
+        <meta name="keywords" content="login, hotel, serenity, sign in" />
+      </Helmet>
       <div className="max-w-7xl mx-auto">
         <Navbar></Navbar>
       </div>

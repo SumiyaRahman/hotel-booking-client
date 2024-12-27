@@ -6,12 +6,20 @@ import AllRooms from "../component/AllRooms";
 import Navbar from "../component/Banner/Navbar";
 import Footer from "../component/Footer";
 import { ToastContainer } from "react-toastify";
-import Testimonials from "../component/Testimonials";
 import Reviews from "../component/Reviews";
+import { Helmet } from "react-helmet";
 
 const MainLayout = () => {
   return (
     <div>
+      <Helmet>
+        <title>Hotel Serenity - Home</title>
+        <meta
+          name="description"
+          content="Discover comfort and luxury at Hotel Serenity. Book your stay now!"
+        />
+        <meta name="keywords" content="hotel, booking, luxury, rooms" />
+      </Helmet>
       <ToastContainer></ToastContainer>
       <div className="max-w-7xl mx-auto">
         <Navbar></Navbar>
@@ -21,7 +29,6 @@ const MainLayout = () => {
         <WelcomeSection></WelcomeSection>
         <Reserve></Reserve>
         <AllRooms></AllRooms>
-        <Testimonials></Testimonials>
         <Reviews></Reviews>
       </div>
       <Footer></Footer>

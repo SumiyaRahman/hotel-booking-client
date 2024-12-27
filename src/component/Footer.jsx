@@ -20,9 +20,7 @@ const Footer = () => {
         <div>
           <h4 className="play-fair text-xl tracking-[0.1rem]">About Us</h4>
           <p className="py-3 md:py-5 font-light tracking-wider leading-[1.3rem] md:leading-[1.7rem] text-xs md:text-sm">
-            Sed sit amet nisl in velit viverra bibendum in ac nisi. Etiam
-            efficitur dui vitae sem rutrum, id pretium nunc varius. Vestibulum
-            hendrerit malesuada .
+          At Hotel Serenity, we are dedicated to offering you a luxurious and comfortable experience. Our team strives to provide personalized service and world-class amenities, making your stay unforgettable. Whether you're here for business or leisure, our hotel offers everything you need to unwind and rejuvenate in style.
           </p>
           <div className="bg-[#BA8A70] inline-block px-3 py-2">
             <ul className="flex gap-5 text-white text-lg">
@@ -88,8 +86,7 @@ const Footer = () => {
         <div>
           <h4 className="play-fair text-xl tracking-[0.1rem]">Subscribe</h4>
           <p className="py-3 md:py-5 font-light tracking-wider leading-[1.3rem] md:leading-[1.7rem] text-xs md:text-sm">
-            Sed sit amet nisl in velit viverra bibendum in ac nisi. Etiam
-            efficitur dui vitae sem
+          Stay up to date with the latest offers and news from Hotel Serenity. Subscribe to our newsletter for exclusive deals, promotions, and updates straight to your inbox.
           </p>
           <div className="space-y-3 md:space-y-5">
             <input

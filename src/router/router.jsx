@@ -10,6 +10,7 @@ import SignIn from "../pages/SignIn/SignIn";
 import About from "../pages/About";
 import MyBookings from "../pages/MyBookings";
 import Gallery from "../pages/Gallery";
+import Contact from "../pages/Contact";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/gallery",
     element: <Gallery></Gallery>,
+  },
+  {
+    path: "/contact",
+    element: <Contact></Contact>,
   },
   {
     path: "/register",

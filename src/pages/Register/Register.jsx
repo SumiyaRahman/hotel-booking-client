@@ -3,6 +3,7 @@ import AuthContext from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../component/Banner/Navbar";
 import Footer from "../../component/Footer";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -77,6 +78,14 @@ const Register = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Hotel Serenity - Register</title>
+        <meta
+          name="description"
+          content="Register for a new account to book rooms at Hotel Serenity."
+        />
+        <meta name="keywords" content="register, hotel, booking, account" />
+      </Helmet>
     <div className="max-w-7xl mx-auto">
         <Navbar></Navbar>
     </div>

@@ -32,20 +32,14 @@ const AllRooms = () => {
         {/* Right Section */}
         <div className="w-full lg:w-2/3 flex flex-col lg:flex-row items-center justify-between">
           <p className="leading-[1.6rem] md:leading-[1.9rem] text-xs md:text-sm text-[#ACACAC] font-light tracking-widest mb-8 md:mb-12 lg:w-2/3">
-            Quisque vitae posuere libero. Phasellus feugiat erat sit amet dui
-            condimentum imperdiet. Ut at
-            <a
-              href="#"
-              className="underline text-gray-500 hover:text-gray-800 "
-            >
-              libero nec ligula fringilla dictum
-            </a>
-            sit amet id dui. Integer gravida dolor elit, sit amet vestibulum mi
-            elementum eget.
+          At Hotel Serenity, we offer a range of rooms designed to meet the needs of all our guests. Whether you're here for a short stay or a long retreat, each of our rooms provides the perfect balance of luxury, comfort, and modern amenities to ensure an unforgettable stay.
           </p>
-          <button onClick={() => navigate("/rooms")}  className="bg-[#373737] text-white uppercase text-xs font-semibold tracking-[0.3rem] px-8 py-3 hover:bg-gray-700">
-              View All
-            </button>
+          <button
+            onClick={() => navigate("/rooms")}
+            className="bg-[#373737] text-white uppercase text-xs font-semibold tracking-[0.3rem] px-8 py-3 hover:bg-gray-700"
+          >
+            View All
+          </button>
         </div>
       </div>
 

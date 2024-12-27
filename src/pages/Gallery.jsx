@@ -10,10 +10,19 @@ import studio from '../assets/Images/Room Images/studio room.jpg'
 import twin from '../assets/Images/Room Images/twin room.jpg'
 import Navbar from "../component/Banner/Navbar";
 import Footer from "../component/Footer";
+import { Helmet } from "react-helmet";
 
 const Gallery = () => {
   return (
     <div>
+        <Helmet>
+        <title>Hotel Serenity - Gallery</title>
+        <meta
+          name="description"
+          content="Explore our gallery to see the beautiful rooms and amenities of Hotel Serenity."
+        />
+        <meta name="keywords" content="gallery, hotel, rooms, amenities" />
+      </Helmet>
         <div className="max-w-7xl mx-auto px-5">
         <Navbar></Navbar>
       <div>

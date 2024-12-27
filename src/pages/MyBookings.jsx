@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import { MdCancel } from "react-icons/md";
 import { MdRateReview } from "react-icons/md";
 import { MdSystemSecurityUpdateGood } from "react-icons/md";
+import { Helmet } from "react-helmet";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext); // Current logged-in user
@@ -195,6 +196,14 @@ const MyBookings = () => {
 
   return (
     <div>
+        <Helmet>
+        <title>Hotel Serenity - My Bookings</title>
+        <meta
+          name="description"
+          content="View and manage your bookings at Hotel Serenity."
+        />
+        <meta name="keywords" content="bookings, hotel, serenity, manage" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-5">
         <Navbar />
         <div>

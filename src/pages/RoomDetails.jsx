@@ -65,20 +65,20 @@ const RoomDetails = () => {
 
   return (
     <section>
-      <div className="max-w-7xl mx-auto py-5">
+      <div className="max-w-7xl mx-auto py-5 px-5">
         <Navbar></Navbar>
       </div>
-      <div className="max-w-6xl mx-auto py-5">
+      <div className="max-w-6xl mx-auto py-5 px-5">
         <div>
-          <h1 className="text-4xl play-fair font-light">{name}</h1>
-          <p className="text-[#ACACAC] font-light text-sm tracking-wider mt-2">
+          <h1 className="text-3xl md:text-4xl play-fair font-light">{name}</h1>
+          <p className="text-[#ACACAC] font-light text-xs md:text-sm tracking-wider mt-2">
             {description}
           </p>
           <div className="flex flex-col xl:flex-row gap-10 mt-8">
             {/* Image */}
-            <div className="w-2/3">
+            <div className="w-full xl:w-2/3">
               <img src={image} alt={name} className="w-full mb-5" />
-              <div className="flex justify-between text-[#ACACAC] my-10 font-light">
+              <div className="flex flex-col md:flex-row justify-between text-[#ACACAC] my-10 font-light gap-5">
                 <span className="flex items-center">
                   <HiOutlineUsers className="mr-2 font-light text-2xl" />{" "}
                   <span className="uppercase tracking-[0.1rem]">
@@ -100,8 +100,8 @@ const RoomDetails = () => {
               </div>
               <hr />
               <div className="my-10">
-                <h1 className="text-4xl play-fair font-light">Room Services</h1>
-                <div className=" mt-8 flex justify-between text-[#ACACAC] font-light">
+                <h1 className="text-3xl md:text-4xl play-fair font-light">Room Services</h1>
+                <div className=" mt-8 flex flex-col md:flex-row justify-between text-[#ACACAC] font-light">
                   <div>
                     <p className="flex flex-col items-center space-y-3">
                       <span className="text-3xl">
@@ -139,9 +139,9 @@ const RoomDetails = () => {
               <hr />
 
               <div className="mt-10">
-                <h2 className="text-3xl font-light mb-6">Reviews</h2>
+                <h2 className="text-3xl md:text-4xl play-fair font-light mb-5">Reviews</h2>
                 {reviews.length > 0 ? (
-                  <div className="space-y-5">
+                  <div className="space-y-5 text-[#ACACAC]">
                     {reviews.map((review) => (
                       <div
                         key={review._id}
@@ -247,8 +247,8 @@ const RoomDetails = () => {
           </div>
         </div>
         <div className="my-10">
-            <h1 className="text-4xl play-fair font-light">Around The Hotel</h1>
-            <div className="grid grid-cols-3 gap-5 mt-10">
+            <h1 className="text-3xl md:text-4xl play-fair font-light">Around The Hotel</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
               <div className="spa relative">
                 <div className="text-white absolute bottom-0 play-fair text-2xl font-semibold tracking-wider">
                   <p className="p-5">Wellness Spa</p>
