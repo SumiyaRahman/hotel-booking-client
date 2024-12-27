@@ -70,7 +70,7 @@ const Navbar = () => {
           <Link to="/">
             <div className="flex items-center">
               <img className="w-16 md:w-20" src={hotelLogo} />
-              <span className="text-3xl play-fair tracking-wider hidden md:block text-[#1C1C1C]">
+              <span className="md:text-2xl lg:text-[22px] xl:text-3xl play-fair tracking-wider hidden md:block text-[#1C1C1C]">
                 SERENE STAYS
               </span>
             </div>
@@ -85,7 +85,7 @@ const Navbar = () => {
       <div className="navbar-end space-x-4">
           {user ? (
             <>
-              <button onClick={handleSignOut} className="py-2 px-5 rounded bg-[#c19b77] text-white font-bold text-base">
+              <button onClick={handleSignOut} className="uppercase py-1 px-3 md:py-2 md:px-5 rounded bg-[#c19b77] text-white font-light md:font-medium text-xs md:text-sm tracking-widest">
                 Sign Out
               </button>
             </>

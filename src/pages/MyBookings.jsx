@@ -3,6 +3,9 @@ import AuthContext from "../context/AuthContext"; // Get logged-in user context
 import Navbar from "../component/Banner/Navbar";
 import Footer from "../component/Footer";
 import Modal from "react-modal";
+import { MdCancel } from "react-icons/md";
+import { MdRateReview } from "react-icons/md";
+import { MdSystemSecurityUpdateGood } from "react-icons/md";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext); // Current logged-in user
@@ -190,223 +193,297 @@ const MyBookings = () => {
 
   return (
     <div>
-      <Navbar />
-      <div className="max-w-7xl mx-auto py-10">
-        <h1 className="text-4xl play-fair font-light mb-6">My Bookings</h1>
+      <div className="max-w-7xl mx-auto px-5">
+        <Navbar />
+        <div>
+          <h1 className="text-4xl play-fair font-light my-10">My Bookings</h1>
 
-        {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="table-auto w-full border-collapse border border-gray-300">
-            <thead>
-              <tr className="bg-[#C19B77] text-white">
-                <th className="border border-gray-300 px-4 py-2">Image</th>
-                <th className="border border-gray-300 px-4 py-2">Room Name</th>
-                <th className="border border-gray-300 px-4 py-2">Price</th>
-                <th className="border border-gray-300 px-4 py-2">Check-In</th>
-                <th className="border border-gray-300 px-4 py-2">Check-Out</th>
-                <th className="border border-gray-300 px-4 py-2">Guests</th>
-                <th className="border border-gray-300 px-4 py-2">Total</th>
-                <th className="border border-gray-300 px-4 py-2">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bookings.map((booking) => (
-                <tr key={booking._id}>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {booking.room && booking.room.image ? (
-                      <img
-                        src={booking.room.image}
-                        alt={booking.room.name}
-                        className="h-20 w-20 object-cover rounded"
-                      />
-                    ) : (
-                      <span>No Image</span>
-                    )}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {booking.room ? booking.room.name : "Unknown Room"}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    ${booking.room ? booking.room.price : "N/A"}/night
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {booking.checkIn}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {booking.checkOut}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {booking.guests}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    ${booking.totalPrice}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {/* Cancel Button */}
-                    <button
-                      onClick={() => openModal(booking)}
-                      className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
-                    >
-                      Cancel
-                    </button>
+          {/* Card Layout for Small and Medium Devices */}
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 lg:hidden">
+            {bookings.map((booking) => (
+              <div key={booking._id} className="bg-white border border-gray-300 rounded-lg p-4">
+              {/* Image */}
+              <div className="mb-4">
+                {booking.room && booking.room.image ? (
+                  <img
+                    src={booking.room.image}
+                    alt={booking.room.name}
+                    className="w-full h-40 object-cover rounded"
+                  />
+                ) : (
+                  <span>No Image</span>
+                )}
+              </div>
+            
+              {/* Room Name and Price */}
+              <div className="flex justify-between mb-4">
+                <h3 className="font-semibold text-lg play-fair text-[#373737]">{booking.room ? booking.room.name : "Unknown Room"}</h3>
+                <p className="text-[#ACACAC] font-light tracking-[0.1rem] text-xs md:text-sm">${booking.room ? booking.room.price : "N/A"}/night</p>
+              </div>
+            
+              {/* Check-In and Check-Out Dates */}
+              <div className="justify-between mb-4 space-y-2">
+                <p className="text-[#ACACAC] font-light tracking-[0.1rem] text-xs md:text-sm">Check-In: {booking.checkIn}</p>
+                <p className="text-[#ACACAC] font-light tracking-[0.1rem] text-xs md:text-sm">Check-Out: {booking.checkOut}</p>
+              </div>
+            
+              {/* Guests and Total */}
+              <div className="flex justify-between mb-4">
+                <p className="text-[#ACACAC] font-light tracking-[0.1rem] text-xs md:text-sm">Guests: {booking.guests}</p>
+                <p className="text-[#ACACAC] font-light tracking-[0.1rem] text-xs md:text-sm">Total: ${booking.totalPrice}</p>
+              </div>
+            
+              {/* Action Buttons */}
+              <div className="flex justify-around items-center mt-6 lg:mt-0">
+                <button
+                  onClick={() => openModal(booking)}
+                  className="text-[#c19b77] text-2xl"
+                >
+                  <MdCancel />
+                </button>
+            
+                <button
+                  onClick={() => openReviewModal(booking)}
+                  className="text-[#373737] text-2xl"
+                >
+                  <MdRateReview />
+                </button>
+            
+                <button
+                  onClick={() => openUpdateDateModal(booking)}
+                  className="text-[#c19b77] text-2xl"
+                >
+                  <MdSystemSecurityUpdateGood />
+                </button>
+              </div>
+            </div>
+            
+            ))}
+          </div>
 
-                    {/* Review Button */}
-                    <button
-                      onClick={() => openReviewModal(booking)}
-                      className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 ml-2"
-                    >
-                      Review
-                    </button>
-
-                    {/* Update Date Button */}
-                    <button
-                      onClick={() => openUpdateDateModal(booking)}
-                      className="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-600 ml-2"
-                    >
-                      Update Date
-                    </button>
-                  </td>
+          {/* Table Layout for Large and Extra Large Devices */}
+          <div className="hidden lg:block overflow-x-auto">
+            <table className="table-auto w-full border-collapse border border-gray-300">
+              <thead>
+                <tr className="bg-[#c19b77] text-white">
+                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">Image</th>
+                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">
+                    Room Name
+                  </th>
+                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">Price</th>
+                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">Check-In</th>
+                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">
+                    Check-Out
+                  </th>
+                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">Guests</th>
+                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">Total</th>
+                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {bookings.map((booking) => (
+                  <tr key={booking._id}>
+                    <td className="border border-gray-300 px-4 py-2">
+                      {booking.room && booking.room.image ? (
+                        <img
+                          src={booking.room.image}
+                          alt={booking.room.name}
+                          className="h-20 w-20 object-cover rounded"
+                        />
+                      ) : (
+                        <span>No Image</span>
+                      )}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
+                      {booking.room ? booking.room.name : "Unknown Room"}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
+                      ${booking.room ? booking.room.price : "N/A"}/night
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
+                      {booking.checkIn}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
+                      {booking.checkOut}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
+                      {booking.guests}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
+                      ${booking.totalPrice}
+                    </td>
+                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
+                      <div className="flex justify-between items-center">
+                        <button
+                          onClick={() => openModal(booking)}
+                          className="text-[#c19b77] text-3xl"
+                        >
+                          <MdCancel />
+                        </button>
+
+                        <button
+                          onClick={() => openReviewModal(booking)}
+                          className="text-[#373737] text-3xl"
+                        >
+                          <MdRateReview />
+                        </button>
+
+                        <button
+                          onClick={() => openUpdateDateModal(booking)}
+                          className="text-[#c19b77] text-3xl"
+                        >
+                          <MdSystemSecurityUpdateGood />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
+
+        {/* Confirmation Modal */}
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          style={{ content: { width: "40%", margin: "auto", padding: "20px", background: "#c19b77" } }}
+        >
+          <div>
+          <h2 className="text-2xl font-bold py-4 text-center play-fair text-white tracking-wider">Confirm Cancellation</h2>
+          <p className="text-center text-base text-white font-light tracking-[0.1rem]">Are you sure you want to cancel this booking?</p>
+          </div>
+          <div className="mt-5 flex justify-center gap-4">
+            <button
+              onClick={handleCancelBooking}
+              className="bg-[#373737] text-white py-2 px-6"
+            >
+              Confirm
+            </button>
+            <button
+              onClick={closeModal}
+              className="border border-[#373737] text-[#373737] py-2 px-6"
+            >
+              Cancel
+            </button>
+          </div>
+        </Modal>
+
+        {/* Review Modal */}
+        <Modal
+          isOpen={isReviewModalOpen}
+          onRequestClose={closeReviewModal}
+          style={{ content: { width: "40%" , margin: "auto", padding: "20px", background: "#373737" } }}
+        >
+          <h2 className="text-2xl font-bold py-4 text-center play-fair text-[#c19b77] tracking-wider">Submit Your Review</h2>
+          <div className="mb-4">
+            <label className="block text-[#c19b77] font-normal text-base tracking-[0.1rem]">Username</label>
+            <input
+              type="text"
+              value={user.email} // Display logged-in user's name
+              readOnly
+              className="w-full p-2 rounded-sm mt-1 text-[#373737] font-normal tracking-wider bg-white cursor-not-allowed"
+            />
+          </div>
+          <form>
+            <div className="mb-4">
+              <label className="block text-[#c19b77] font-normal text-base tracking-[0.1rem]">Rating (1-5)</label>
+              <input
+                type="number"
+                min="1"
+                max="5"
+                value={reviewForm.rating}
+                onChange={(e) =>
+                  setReviewForm({ ...reviewForm, rating: e.target.value })
+                }
+                className="w-full p-2 rounded-sm mt-1 text-[#373737] font-normal tracking-wider bg-white"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-[#c19b77] font-normal text-base tracking-[0.1rem]">Comment:</label>
+              <textarea
+                value={reviewForm.comment}
+                onChange={(e) =>
+                  setReviewForm({ ...reviewForm, comment: e.target.value })
+                }
+                rows="4"
+                className="w-full p-2 rounded-sm mt-1 text-[#373737] font-normal tracking-wider bg-white"
+                required
+              ></textarea>
+            </div>
+            <div className="flex justify-end gap-4">
+              <button
+                type="button"
+                onClick={handleReviewSubmit}
+                className="bg-[#c19b77] text-white uppercase  py-2 px-6 rounded-sm tracking-[0.1rem]"
+              >
+                Submit
+              </button>
+              <button
+                type="button"
+                onClick={closeReviewModal}
+                className="border border-[#c19b77] text-[#c19b77] uppercase py-2 px-6 rounded-sm tracking-[0.1rem]"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </Modal>
+
+        {/* Update Date Modal */}
+        <Modal
+          isOpen={isUpdateModalOpen}
+          onRequestClose={closeUpdateModal}
+          style={{ content: { width: "50%", margin: "auto", padding: "20px" } }}
+        >
+          <h2 className="text-2xl font-bold mb-4 text-center play-fair text-[#373737] tracking-wider">Update Booking Dates</h2>
+          <form>
+            <div className="mb-4">
+              <label className="block text-gray-700">Check-In Date:</label>
+              <input
+                type="date"
+                value={updateForm.checkIn}
+                onChange={(e) =>
+                  setUpdateForm({ ...updateForm, checkIn: e.target.value })
+                }
+                className="w-full border border-gray-300 p-2 rounded mt-1"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700">Check-Out Date:</label>
+              <input
+                type="date"
+                value={updateForm.checkOut}
+                onChange={(e) =>
+                  setUpdateForm({ ...updateForm, checkOut: e.target.value })
+                }
+                className="w-full border border-gray-300 p-2 rounded mt-1"
+                required
+              />
+            </div>
+            <div className="flex justify-end gap-4">
+              <button
+                type="button"
+                onClick={handleDateUpdate}
+                className="bg-yellow-500 text-white py-2 px-6 rounded hover:bg-yellow-600"
+              >
+                Update
+              </button>
+              <button
+                type="button"
+                onClick={closeUpdateModal}
+                className="bg-gray-500 text-white py-2 px-6 rounded hover:bg-gray-600"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </Modal>
       </div>
 
       <Footer />
-
-      {/* Confirmation Modal */}
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
-        style={{ content: { width: "50%", margin: "auto", padding: "20px" } }}
-      >
-        <h2 className="text-2xl font-semibold mb-4">Confirm Cancellation</h2>
-        <p>Are you sure you want to cancel this booking?</p>
-        <div className="mt-5 flex justify-end gap-4">
-          <button
-            onClick={handleCancelBooking}
-            className="bg-red-500 text-white py-2 px-6 rounded hover:bg-red-600"
-          >
-            Confirm
-          </button>
-          <button
-            onClick={closeModal}
-            className="bg-gray-500 text-white py-2 px-6 rounded hover:bg-gray-600"
-          >
-            Cancel
-          </button>
-        </div>
-      </Modal>
-      <Modal
-        isOpen={isReviewModalOpen}
-        onRequestClose={closeReviewModal}
-        style={{ content: { width: "50%", margin: "auto", padding: "20px" } }}
-      >
-        <h2 className="text-2xl font-semibold mb-4">Submit Your Review</h2>
-        <div className="mb-4">
-          <label className="block text-gray-700">Username:</label>
-          <input
-            type="text"
-            value={user.email} // Display logged-in user's name
-            readOnly
-            className="w-full border border-gray-300 p-2 rounded mt-1 bg-gray-100 cursor-not-allowed"
-          />
-        </div>
-        <form>
-          <div className="mb-4">
-            <label className="block text-gray-700">Rating (1-5):</label>
-            <input
-              type="number"
-              min="1"
-              max="5"
-              value={reviewForm.rating}
-              onChange={(e) =>
-                setReviewForm({ ...reviewForm, rating: e.target.value })
-              }
-              className="w-full border border-gray-300 p-2 rounded mt-1"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Comment:</label>
-            <textarea
-              value={reviewForm.comment}
-              onChange={(e) =>
-                setReviewForm({ ...reviewForm, comment: e.target.value })
-              }
-              rows="4"
-              className="w-full border border-gray-300 p-2 rounded mt-1"
-              required
-            ></textarea>
-          </div>
-          <div className="flex justify-end gap-4">
-            <button
-              type="button"
-              onClick={handleReviewSubmit}
-              className="bg-green-500 text-white py-2 px-6 rounded hover:bg-green-600"
-            >
-              Submit
-            </button>
-            <button
-              type="button"
-              onClick={closeReviewModal}
-              className="bg-gray-500 text-white py-2 px-6 rounded hover:bg-gray-600"
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      </Modal>
-      <Modal
-        isOpen={isUpdateModalOpen}
-        onRequestClose={closeUpdateModal}
-        style={{ content: { width: "50%", margin: "auto", padding: "20px" } }}
-      >
-        <h2 className="text-2xl font-semibold mb-4">Update Booking Dates</h2>
-        <form>
-          <div className="mb-4">
-            <label className="block text-gray-700">Check-In Date:</label>
-            <input
-              type="date"
-              value={updateForm.checkIn}
-              onChange={(e) =>
-                setUpdateForm({ ...updateForm, checkIn: e.target.value })
-              }
-              className="w-full border border-gray-300 p-2 rounded mt-1"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Check-Out Date:</label>
-            <input
-              type="date"
-              value={updateForm.checkOut}
-              onChange={(e) =>
-                setUpdateForm({ ...updateForm, checkOut: e.target.value })
-              }
-              className="w-full border border-gray-300 p-2 rounded mt-1"
-              required
-            />
-          </div>
-          <div className="flex justify-end gap-4">
-            <button
-              type="button"
-              onClick={handleDateUpdate}
-              className="bg-yellow-500 text-white py-2 px-6 rounded hover:bg-yellow-600"
-            >
-              Update
-            </button>
-            <button
-              type="button"
-              onClick={closeUpdateModal}
-              className="bg-gray-500 text-white py-2 px-6 rounded hover:bg-gray-600"
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      </Modal>
     </div>
   );
 };

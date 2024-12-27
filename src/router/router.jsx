@@ -9,6 +9,7 @@ import Register from "../pages/Register/Register";
 import SignIn from "../pages/SignIn/SignIn";
 import About from "../pages/About";
 import MyBookings from "../pages/MyBookings";
+import Gallery from "../pages/Gallery";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/about",
     element: <About></About>,
+  },
+  {
+    path: "/gallery",
+    element: <Gallery></Gallery>,
   },
   {
     path: "/register",

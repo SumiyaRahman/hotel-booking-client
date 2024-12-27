@@ -17,7 +17,7 @@ const Rooms = () => {
 
   return (
     <section>
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-5">
         <Navbar></Navbar>
       <div>
         <h1 className="play-fair text-5xl leading-[4rem] mb-5 text-[#1C1C1C] text-center py-10">

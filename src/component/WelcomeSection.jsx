@@ -15,10 +15,10 @@ const WelcomeSection = () => {
 
         <div>
             <p className='tracking-[0.5rem] text-xs font-medium text-[#C19B77] mb-6'>INN & SUITES</p>
-            <h1 className='play-fair text-5xl leading-[4rem] mb-5 text-[#1C1C1C]'>Welcome to Serenity Stay Hotel</h1>
-            <p className='leading-[1.9rem] text-sm text-[#ACACAC] font-light tracking-widest mb-12'>Nestled in nature's embrace, Serenity Stay Hotel offers an exquisite blend of elegance and comfort. Whether you're here for relaxation, adventure, or business, enjoy modern amenities, personalized services, and breathtaking views. Create lasting memories in a haven designed for extraordinary experiences.</p>
+            <h1 className='play-fair text-3xl md:text-5xl leading-[3rem] md:leading-[4rem] mb-5 text-[#1C1C1C]'>Welcome to Serenity Stay Hotel</h1>
+            <p className='leading-[1.5rem] md:leading-[1.9rem] text-xs md:text-sm text-[#ACACAC] font-light tracking-widest mb-12'>Nestled in nature's embrace, Serenity Stay Hotel offers an exquisite blend of elegance and comfort. Whether you're here for relaxation, adventure, or business, enjoy modern amenities, personalized services, and breathtaking views. Create lasting memories in a haven designed for extraordinary experiences.</p>
             <div className='border border-[#dbdbdb]'></div>
-            <div className='flex justify-between items-center mt-5'>
+            <div className='flex flex-col md:flex-row justify-between items-start md:items-center mt-5 gap-6'>
                 <div>
                     <p className='mb-5 text-xs font-semibold tracking-[0.3rem] text-[#1C1C1C]'>MAIN MAIL</p>
                     <p className='text-[#ACACAC] text-sm font-light tracking-[0.1rem]'>serenestay@gmail.com</p>

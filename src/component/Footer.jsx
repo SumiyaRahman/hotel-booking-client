@@ -16,10 +16,10 @@ import twin from '../assets/Images/Room Images/twin room.jpg'
 const Footer = () => {
   return (
     <div className="mt-[100px]">
-      <footer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 bg-[#373737] text-white py-[100px] px-10">
+      <footer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 bg-[#373737] text-white py-16 md:py-[100px] px-10">
         <div>
           <h4 className="play-fair text-xl tracking-[0.1rem]">About Us</h4>
-          <p className="py-5 font-light tracking-wider leading-[1.7rem] text-sm">
+          <p className="py-3 md:py-5 font-light tracking-wider leading-[1.3rem] md:leading-[1.7rem] text-xs md:text-sm">
             Sed sit amet nisl in velit viverra bibendum in ac nisi. Etiam
             efficitur dui vitae sem rutrum, id pretium nunc varius. Vestibulum
             hendrerit malesuada .
@@ -58,26 +58,26 @@ const Footer = () => {
         </div>
         <div>
           <h4 className="play-fair text-xl tracking-[0.1rem]">All Contacts</h4>
-          <ul className="space-y-5 mt-5">
-            <li className="flex items-center text-sm font-light tracking-wider gap-4">
+          <ul className="space-y-4 md:space-y-5 mt-5">
+            <li className="flex items-center text-xs md:text-sm font-light tracking-wider gap-3 md:gap-4">
               <span className="text-base">
                 <IoLocationOutline />
               </span>
               <span>111 8th Ave, New York U.S.A.</span>
             </li>
-            <li className="flex items-center text-sm font-light tracking-wider gap-4">
+            <li className="flex items-center text-xs md:text-sm font-light tracking-wider gap-3 md:gap-4">
               <span className="text-base">
                 <MdOutlinePhoneInTalk />
               </span>
               <span>Reserve +1-202-555-0153</span>
             </li>
-            <li className="flex items-center text-sm font-light tracking-wider gap-4">
+            <li className="flex items-center text-xs md:text-sm font-light tracking-wider gap-3 md:gap-4">
               <span className="text-base">
                 <MdOutlineMarkEmailUnread />
               </span>
               <span>serenestay@gmail.com</span>
             </li>
-            <li className="flex items-center text-sm font-light tracking-wider gap-4">
+            <li className="flex items-center text-xs md:text-sm font-light tracking-wider gap-3 md:gap-4">
               <span className="text-base">
                 <LuClockAlert />
               </span>
@@ -87,17 +87,17 @@ const Footer = () => {
         </div>
         <div>
           <h4 className="play-fair text-xl tracking-[0.1rem]">Subscribe</h4>
-          <p className="py-5 font-light tracking-wider leading-[1.7rem] text-sm">
+          <p className="py-3 md:py-5 font-light tracking-wider leading-[1.3rem] md:leading-[1.7rem] text-xs md:text-sm">
             Sed sit amet nisl in velit viverra bibendum in ac nisi. Etiam
             efficitur dui vitae sem
           </p>
-          <div className="space-y-5">
+          <div className="space-y-3 md:space-y-5">
             <input
-              className="input w-full rounded-none font-medium text-sm text-[#1C1C1C] placeholder:text-[#1C1C1C] placeholder:font-light placeholder:text-sm tracking-wider"
+              className="input w-full rounded-none font-medium text-xs md:text-sm text-[#1C1C1C] placeholder:text-[#1C1C1C] placeholder:font-light placeholder:text-xs md:placeholder:text-sm tracking-wider"
               placeholder="Insert Your Email"
               type="email"
             />
-            <button className="uppercase py-3 px-8 tracking-[0.1rem] text-xs bg-[#BA8A70]">
+            <button className="uppercase py-2 px-6 md:py-3 md:px-8 tracking-[0.1rem] text-xs bg-[#BA8A70]">
               submit
             </button>
           </div>
@@ -118,7 +118,7 @@ const Footer = () => {
         </div>
       </footer>
       <div className="py-3 px-10 bg-[#2D2D2D] text-white text-center">
-      <p className="text-sm font-light tracking-[0.1rem]">&copy; Hotel Serene Stays - Sumiya Copyright</p>
+      <p className="text-xs md:text-sm font-light tracking-[0.1rem]">&copy; Hotel Serene Stays - Sumiya Copyright</p>
       </div>
     </div>
   );
