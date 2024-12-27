@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { motion } from "framer-motion";
 import hotelLogo from "../../assets/Images/Images/hotelLogo.png";
 import AuthContext from "../../context/AuthContext";
 
@@ -8,14 +9,14 @@ const Navbar = () => {
 
   const handleSignOut = () => {
     signOutUser()
-    .then(() => {
-      console.log('successful sign out');
-    })
-    .catch(error => {
-      console.log('failed to sign out', error.message);
-      
-    })
-  }
+      .then(() => {
+        console.log('successful sign out');
+      })
+      .catch(error => {
+        console.log('failed to sign out', error.message);
+      });
+  };
+
   const links = (
     <>
       <li>
@@ -40,7 +41,12 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar">
+    <motion.div
+      className="navbar"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -83,28 +89,39 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end space-x-4">
-          {user ? (
-            <>
-              <button onClick={handleSignOut} className="uppercase py-1 px-3 md:py-2 md:px-5 rounded bg-[#c19b77] text-white font-light md:font-medium text-xs md:text-sm tracking-widest">
-                Sign Out
-              </button>
-            </>
-          ) : (
-            <>
-              <Link to="/register">
-                <span className="text-[#373737] font-bold text-base underline">
-                  Register
-                </span>
-              </Link>
-              <Link to="/signIn">
-                <button className="py-2 px-5 rounded bg-[#c19b77] text-white font-bold text-base">
-                  Sign In
-                </button>
-              </Link>
-            </>
-          )}
-        </div>
-    </div>
+        {user ? (
+          <>
+            <motion.button
+              onClick={handleSignOut}
+              className="uppercase py-1 px-3 md:py-2 md:px-5 rounded bg-[#c19b77] text-white font-light md:font-medium text-xs md:text-sm tracking-widest"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              Sign Out
+            </motion.button>
+          </>
+        ) : (
+          <>
+            <Link to="/register">
+              <span className="text-[#373737] font-bold text-base underline">
+                Register
+              </span>
+            </Link>
+            <Link to="/signIn">
+              <motion.button
+                className="py-2 px-5 rounded bg-[#c19b77] text-white font-bold text-base"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+              >
+                Sign In
+              </motion.button>
+            </Link>
+          </>
+        )}
+      </div>
+    </motion.div>
   );
 };
 

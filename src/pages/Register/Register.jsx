@@ -8,6 +8,10 @@ import { Helmet } from "react-helmet";
 const Register = () => {
   const { createUser } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const [name, setName] = useState("");
+  const [photoURL, setPhotoURL] = useState(""); // State for photo URL
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate(); // Use navigate hook
 
   // Handle Register Submission
@@ -45,7 +49,7 @@ const Register = () => {
       .then((result) => {
         console.log("User created successfully:", result.user);
 
-        // Add user data to database
+        // Add user data to database, including photoURL
         fetch('http://localhost:5000/addUser', {
           method: 'POST',
           headers: {
@@ -54,7 +58,7 @@ const Register = () => {
           body: JSON.stringify({
             email,
             name: `${firstName} ${lastName}`,
-            photoURL: "",
+            photoURL: photoURL || '', // Save photoURL (if provided)
             providerId: "email-password",
           }),
         })
@@ -86,9 +90,9 @@ const Register = () => {
         />
         <meta name="keywords" content="register, hotel, booking, account" />
       </Helmet>
-    <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <Navbar></Navbar>
-    </div>
+      </div>
       <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse gap-10 items-center">
           <div className="text-center lg:text-left w-1/3">
@@ -96,9 +100,7 @@ const Register = () => {
           </div>
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <form onSubmit={handleRegister} className="card-body">
-              <h1 className="text-5xl font-bold text-[#373737]">
-                Register now!
-              </h1>
+              <h1 className="text-5xl font-bold text-[#373737]">Register now!</h1>
 
               {/* First Name Input */}
               <div className="form-control">
@@ -142,6 +144,21 @@ const Register = () => {
                 />
               </div>
 
+              {/* Photo URL Input */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Profile Photo URL</span>
+                </label>
+                <input
+                  type="url"
+                  name="photoURL"
+                  placeholder="Enter your profile photo URL"
+                  className="input input-bordered"
+                  value={photoURL}
+                  onChange={(e) => setPhotoURL(e.target.value)}
+                />
+              </div>
+
               {/* Password Input */}
               <div className="form-control">
                 <label className="label">
@@ -167,11 +184,11 @@ const Register = () => {
               </div>
             </form>
             <p className="text-xs md:text-sm font-medium text-center text-[#403F3F] pb-5">
-            Already Have An Account?{" "}
-            <Link to="/signin" className="text-[#c19b77] font-semibold underline">
-              Login
-            </Link>
-          </p>
+              Already Have An Account?{" "}
+              <Link to="/signin" className="text-[#c19b77] font-semibold underline">
+                Login
+              </Link>
+            </p>
           </div>
         </div>
       </div>

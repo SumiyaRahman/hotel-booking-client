@@ -11,7 +11,7 @@ const AllRooms = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data); // Check response in the console
-        setRooms(data.slice(0, 6));
+        setRooms(data.slice(0, 6)); // Show only first 6 rooms
       })
       .catch((err) => console.log("Error:", err)); // Log errors
   }, []);
@@ -32,7 +32,7 @@ const AllRooms = () => {
         {/* Right Section */}
         <div className="w-full lg:w-2/3 flex flex-col lg:flex-row items-center justify-between">
           <p className="leading-[1.6rem] md:leading-[1.9rem] text-xs md:text-sm text-[#ACACAC] font-light tracking-widest mb-8 md:mb-12 lg:w-2/3">
-          At Hotel Serenity, we offer a range of rooms designed to meet the needs of all our guests. Whether you're here for a short stay or a long retreat, each of our rooms provides the perfect balance of luxury, comfort, and modern amenities to ensure an unforgettable stay.
+            At Hotel Serenity, we offer a range of rooms designed to meet the needs of all our guests. Whether you're here for a short stay or a long retreat, each of our rooms provides the perfect balance of luxury, comfort, and modern amenities to ensure an unforgettable stay.
           </p>
           <button
             onClick={() => navigate("/rooms")}
