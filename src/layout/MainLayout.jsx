@@ -6,6 +6,8 @@ import AllRooms from "../component/AllRooms";
 import Navbar from "../component/Banner/Navbar";
 import Footer from "../component/Footer";
 import { ToastContainer } from "react-toastify";
+import Testimonials from "../component/Testimonials";
+import Reviews from "../component/Reviews";
 
 const MainLayout = () => {
   return (
@@ -19,6 +21,8 @@ const MainLayout = () => {
         <WelcomeSection></WelcomeSection>
         <Reserve></Reserve>
         <AllRooms></AllRooms>
+        <Testimonials></Testimonials>
+        <Reviews></Reviews>
       </div>
       <Footer></Footer>
     </div>

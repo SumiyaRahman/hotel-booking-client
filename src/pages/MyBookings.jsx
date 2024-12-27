@@ -112,7 +112,7 @@ const MyBookings = () => {
   // Cancel Booking
   const handleCancelBooking = async () => {
     if (!selectedBooking) return;
-
+  
     try {
       const response = await fetch(
         `http://localhost:5000/bookings/${selectedBooking._id}`,
@@ -120,22 +120,24 @@ const MyBookings = () => {
           method: "DELETE",
         }
       );
-
+  
+      const result = await response.json();
       if (!response.ok) {
-        throw new Error("Failed to cancel booking.");
+        throw new Error(result.error || "Failed to cancel booking.");
       }
-
+  
       // Refresh bookings after cancellation
       setBookings(bookings.filter((b) => b._id !== selectedBooking._id));
-
-      alert("Booking canceled successfully!");
+  
+      alert(result.message || "Booking canceled successfully!");
     } catch (err) {
       console.error("Cancel booking failed:", err.message);
-      alert("Failed to cancel booking.");
+      alert(err.message || "Failed to cancel booking.");
     } finally {
       closeModal();
     }
   };
+  
 
   const openReviewModal = (booking) => {
     setSelectedReviewRoom(booking.room); // Set the selected room for review
@@ -350,19 +352,19 @@ const MyBookings = () => {
           style={{ content: { width: "40%", margin: "auto", padding: "20px", background: "#c19b77" } }}
         >
           <div>
-          <h2 className="text-2xl font-bold py-4 text-center play-fair text-white tracking-wider">Confirm Cancellation</h2>
-          <p className="text-center text-base text-white font-light tracking-[0.1rem]">Are you sure you want to cancel this booking?</p>
+          <h2 className="text-2xl font-bold py-4 text-center play-fair text-[#373737] tracking-wider">Confirm Cancellation</h2>
+          <p className="text-center text-base text-[#373737] font-light tracking-[0.1rem]">Are you sure you want to cancel this booking?</p>
           </div>
           <div className="mt-5 flex justify-center gap-4">
             <button
               onClick={handleCancelBooking}
-              className="bg-[#373737] text-white py-2 px-6"
+              className="bg-[#373737] text-white uppercase text-sm py-2 px-6 rounded-sm tracking-[0.1rem]"
             >
               Confirm
             </button>
             <button
               onClick={closeModal}
-              className="border border-[#373737] text-[#373737] py-2 px-6"
+              className="border border-[#373737] text-sm uppercase rounded-sm tracking-[0.1rem] text-[#373737] py-2 px-6"
             >
               Cancel
             </button>
@@ -435,31 +437,31 @@ const MyBookings = () => {
         <Modal
           isOpen={isUpdateModalOpen}
           onRequestClose={closeUpdateModal}
-          style={{ content: { width: "50%", margin: "auto", padding: "20px" } }}
+          style={{ content: { width: "50%", margin: "auto", padding: "20px", background: "#c19b77" } }}
         >
-          <h2 className="text-2xl font-bold mb-4 text-center play-fair text-[#373737] tracking-wider">Update Booking Dates</h2>
+          <h2 className="text-2xl font-bold py-4 text-center play-fair text-[#373737] tracking-wider">Update Booking Dates</h2>
           <form>
             <div className="mb-4">
-              <label className="block text-gray-700">Check-In Date:</label>
+              <label className="block text-[#373737] font-normal text-base tracking-[0.1rem]">Check-In Date:</label>
               <input
                 type="date"
                 value={updateForm.checkIn}
                 onChange={(e) =>
                   setUpdateForm({ ...updateForm, checkIn: e.target.value })
                 }
-                className="w-full border border-gray-300 p-2 rounded mt-1"
+                className="w-full text-[#373737] p-2 mt-1"
                 required
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700">Check-Out Date:</label>
+              <label className="block text-[#373737] font-normal text-base tracking-[0.1rem]">Check-Out Date:</label>
               <input
                 type="date"
                 value={updateForm.checkOut}
                 onChange={(e) =>
                   setUpdateForm({ ...updateForm, checkOut: e.target.value })
                 }
-                className="w-full border border-gray-300 p-2 rounded mt-1"
+                className="w-full text-[#373737] p-2 mt-1"
                 required
               />
             </div>
@@ -467,14 +469,14 @@ const MyBookings = () => {
               <button
                 type="button"
                 onClick={handleDateUpdate}
-                className="bg-yellow-500 text-white py-2 px-6 rounded hover:bg-yellow-600"
+                className="bg-[#373737] text-white uppercase text-sm py-2 px-6 rounded-sm tracking-[0.1rem]"
               >
                 Update
               </button>
               <button
                 type="button"
                 onClick={closeUpdateModal}
-                className="bg-gray-500 text-white py-2 px-6 rounded hover:bg-gray-600"
+                className="border border-[#373737] text-sm uppercase rounded-sm tracking-[0.1rem] text-[#373737] py-2 px-6"
               >
                 Cancel
               </button>
