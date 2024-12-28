@@ -8,7 +8,7 @@ const Reviews = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const reviewResponse = await fetch("http://localhost:5000/api/reviews");
+        const reviewResponse = await fetch("https://hotel-booking-server-plum-five.vercel.app/api/reviews");
         const reviewData = await reviewResponse.json();
         console.log("Review Data:", reviewData); // Check if the structure matches what you're expecting
 

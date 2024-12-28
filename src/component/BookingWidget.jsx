@@ -54,7 +54,7 @@ const BookingWidget = ({ room, uid }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/bookings", {
+      const response = await fetch("https://hotel-booking-server-plum-five.vercel.app/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

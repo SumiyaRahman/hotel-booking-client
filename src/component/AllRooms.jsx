@@ -7,7 +7,7 @@ const AllRooms = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/rooms")
+    fetch("https://hotel-booking-server-plum-five.vercel.app/rooms")
       .then((res) => res.json())
       .then((data) => {
         console.log(data); // Check response in the console
