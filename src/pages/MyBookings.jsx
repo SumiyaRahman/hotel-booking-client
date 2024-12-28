@@ -26,7 +26,7 @@ const MyBookings = () => {
     const fetchBookings = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/bookings/${user.uid}`
+          `https://hotel-booking-server-one-nu.vercel.app/bookings/${user.uid}`
         );
 
         if (!response.ok) {
@@ -65,7 +65,7 @@ const MyBookings = () => {
   const handleDateUpdate = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/bookings/${selectedBooking._id}`,
+        `https://hotel-booking-server-one-nu.vercel.app/bookings/${selectedBooking._id}`,
         {
           method: "PUT",
           headers: {
@@ -116,7 +116,7 @@ const MyBookings = () => {
   
     try {
       const response = await fetch(
-        `http://localhost:5000/bookings/${selectedBooking._id}`,
+        `https://hotel-booking-server-one-nu.vercel.app/bookings/${selectedBooking._id}`,
         {
           method: "DELETE",
         }
@@ -164,7 +164,7 @@ const MyBookings = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/reviews", {
+      const response = await fetch("https://hotel-booking-server-one-nu.vercel.app/reviews", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
