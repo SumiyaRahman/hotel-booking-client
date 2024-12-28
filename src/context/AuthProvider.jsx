@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
   // --------------------------------
   // Email and Password Authentication
   // --------------------------------
-  const createUser = async (email, password) => {
+  const createUser = async (email, password, photoURL) => {
     setLoading(true);
   
     try {
@@ -67,12 +67,12 @@ const AuthProvider = ({ children }) => {
   
       console.log("Firebase User Created:", user); // Debug log
   
-      // Prepare user data for MongoDB
+      // Prepare user data for MongoDB, including photoURL if available
       const userData = {
         uid: user.uid, // Firebase UID
         email: user.email,
         name: user.displayName || "Anonymous", // Default name if not provided
-        // photo: user.photoURL || "https://via.placeholder.com/150", 
+        photoURL: photoURL || user.photoURL || "https://via.placeholder.com/150", // Default photo if not provided
       };
   
       // Save user to MongoDB
@@ -94,8 +94,8 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
       throw error; // Rethrow error for handling elsewhere
     }
-  };
-  
+};
+
 
   const signInUser = (email, password) => {
     setLoading(true);

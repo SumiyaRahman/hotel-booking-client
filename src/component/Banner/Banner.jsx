@@ -6,18 +6,15 @@ const Banner = () => {
     <div className="carousel w-full">
       
       {/* Slide 1 */}
-      <div id="slide1" className="carousel-item relative w-full">
+      <div id="slide1" className="carousel-item relative w-full h-100vh">
         <div className="bg-img">
           <div className="max-w-7xl mx-auto px-5 h-100vh">
-            <div className="pt-[200px] text-center">
+            <div className="pt-[300px] text-center">
               <p className="uppercase text-[#C19B77] text-xs font-semibold tracking-[0.3rem]">
                 Book your room now!
               </p>
-              <h1 className="play-fair text-7xl font-semibold mt-10 leading-[3.5rem] text-white">
-                Luxury
-              </h1>
-              <h1 className="play-fair text-7xl font-semibold mt-10 leading-[3.5rem] text-white">
-                Comfort Serenity
+              <h1 className="play-fair text-2xl md:text-7xl font-semibold mt-10 leading-[3rem] md:leading-[3.5rem] text-white">
+                Luxury Comfort Serenity
               </h1>
             </div>
           </div>
@@ -36,15 +33,12 @@ const Banner = () => {
       <div id="slide2" className="carousel-item relative w-full">
         <div className="slide-2">
           <div className="max-w-7xl mx-auto px-5 h-100vh">
-            <div className="pt-[200px] text-center">
+            <div className="pt-[300px] text-center">
               <p className="uppercase text-[#C19B77] text-xs font-semibold tracking-[0.3rem]">
                 Book your room now!
               </p>
-              <h1 className="play-fair text-7xl font-semibold mt-10 leading-[3.5rem] text-white">
-                Experience
-              </h1>
-              <h1 className="play-fair text-7xl font-semibold mt-10 leading-[3.5rem] text-white">
-                Ultimate Comfort
+              <h1 className="play-fair text-2xl md:text-7xl font-semibold mt-10 leading-[3rem] md:leading-[3.5rem] text-white">
+                Experience Ultimate Comfort
               </h1>
             </div>
           </div>
@@ -63,15 +57,12 @@ const Banner = () => {
       <div id="slide3" className="carousel-item relative w-full">
         <div className="slide-3">
           <div className="max-w-7xl mx-auto px-5 h-100vh">
-            <div className="pt-[200px] text-center">
+            <div className="pt-[300px] text-center">
               <p className="uppercase text-[#C19B77] text-xs font-semibold tracking-[0.3rem]">
                 Book your room now!
               </p>
-              <h1 className="play-fair text-7xl font-semibold mt-10 leading-[3.5rem] text-white">
-                Your Perfect Stay
-              </h1>
-              <h1 className="play-fair text-7xl font-semibold mt-10 leading-[3.5rem] text-white">
-                Awaits You
+              <h1 className="play-fair text-2xl md:text-7xl font-semibold mt-10 leading-[3rem] md:leading-[3.5rem] text-white">
+                Your Perfect Stay Awaits You
               </h1>
             </div>
           </div>

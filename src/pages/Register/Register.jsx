@@ -186,7 +186,7 @@ const Register = () => {
             <p className="text-xs md:text-sm font-medium text-center text-[#403F3F] pb-5">
               Already Have An Account?{" "}
               <Link to="/signin" className="text-[#c19b77] font-semibold underline">
-                Login
+                Signin
               </Link>
             </p>
           </div>

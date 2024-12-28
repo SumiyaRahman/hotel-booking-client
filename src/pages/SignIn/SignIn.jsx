@@ -31,7 +31,12 @@ const SignIn = () => {
     signInUser(email, password)
       .then((result) => {
         console.log("User signed in successfully:", result.user);
-        navigate(from); // Redirect to intended page or home
+        const user = {email: email}
+        axios.post('http://localhost:5000/jwt', user)
+        .then(data => {
+          console.log(data);
+        })
+        // navigate(from); // Redirect to intended page or home
       })
       .catch((error) => {
         navigate(from); // Display Firebase error message
