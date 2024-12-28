@@ -28,7 +28,7 @@ const RoomDetails = () => {
     const fetchRoomDetails = async () => {
       try {
         const response = await fetch(
-          `https://hotel-booking-server-plum-five.vercel.app/rooms/${id}/details`
+          `http://localhost:5000/rooms/${id}/details`
         ); // Correct endpoint
 
         if (!response.ok) {

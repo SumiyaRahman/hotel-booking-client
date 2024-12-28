@@ -50,7 +50,7 @@ const Register = () => {
         console.log("User created successfully:", result.user);
 
         // Add user data to database, including photoURL
-        fetch('https://hotel-booking-server-plum-five.vercel.app/addUser', {
+        fetch('http://localhost:5000/addUser', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

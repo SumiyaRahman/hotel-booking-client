@@ -32,7 +32,7 @@ const SignIn = () => {
       .then((result) => {
         console.log("User signed in successfully:", result.user);
         const user = {email: email}
-        axios.post('https://hotel-booking-server-plum-five.vercel.app/jwt', user)
+        axios.post('http://localhost:5000/jwt', user)
         .then(data => {
           console.log(data);
         })
@@ -65,7 +65,7 @@ const SignIn = () => {
           photo: user.photoURL || "https://via.placeholder.com/150",
         };
 
-        const response = await fetch("https://hotel-booking-server-plum-five.vercel.app/users", {
+        const response = await fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

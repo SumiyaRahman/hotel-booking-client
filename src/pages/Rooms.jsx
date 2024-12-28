@@ -18,7 +18,7 @@ const Rooms = () => {
         if (minPrice) query += `minPrice=${minPrice}&`;
         if (maxPrice) query += `maxPrice=${maxPrice}&`;
 
-        const response = await fetch(`https://hotel-booking-server-plum-five.vercel.app/rooms/filter?${query}`);
+        const response = await fetch(`http://localhost:5000/rooms/filter?${query}`);
         const data = await response.json();
         setRooms(data); // Set the filtered rooms
       } catch (error) {
