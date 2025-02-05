@@ -1,5 +1,7 @@
 # 🏨 Hotel Booking Platform
 
+![Hotel Booking Banner](https://i.ibb.co/whQL2XNb/Screenshot-218.png)
+
 ## 🚀 Project Overview
 The **Hotel Booking Platform** is a modern web application that provides users with a seamless experience for discovering and booking hotel rooms. It combines interactive design, secure authentication, and efficient booking management to enhance user experience.
 
