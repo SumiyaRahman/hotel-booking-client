@@ -67,18 +67,20 @@ const Navbar = () => {
           Gallery
         </NavLink>
       </li>
-      <li>
-        <NavLink 
-          to="/myBookings"
-          className={({ isActive }) => 
-            isActive 
-              ? "block py-2 text-[#c19b77] font-medium"
-              : "block py-2 hover:text-[#c19b77] transition-colors duration-300"
-          }
-        >
-          My Bookings
-        </NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink 
+            to="/myBookings"
+            className={({ isActive }) => 
+              isActive 
+                ? "block py-2 text-[#c19b77] font-medium"
+                : "block py-2 hover:text-[#c19b77] transition-colors duration-300"
+            }
+          >
+            My Bookings
+          </NavLink>
+        </li>
+      )}
       <li>
         <NavLink 
           to="/contact"

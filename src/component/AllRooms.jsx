@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
 import RoomCard from "./RoomCard";
 import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const AllRooms = () => {
-  const [rooms, setRooms] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch("https://hotel-booking-server-one-nu.vercel.app/rooms")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data); // Check response in the console
-        setRooms(data.slice(0, 6)); // Show only first 6 rooms
-      })
-      .catch((err) => console.log("Error:", err)); // Log errors
-  }, []);
+  const { data: rooms = [] } = useQuery({
+    queryKey: ['rooms'],
+    queryFn: async () => {
+      const response = await axios.get('https://hotel-booking-server-one-nu.vercel.app/rooms');
+      return response.data.slice(0, 6); // Show only first 6 rooms
+    }
+  });
 
   return (
     <section className="px-4 md:px-8 lg:px-16 py-12 md:py-20">
