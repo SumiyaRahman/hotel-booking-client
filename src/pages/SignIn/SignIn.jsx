@@ -6,6 +6,7 @@ import github from "../../assets/Images/Images/github.png";
 import Navbar from "../../component/Banner/Navbar";
 import Footer from "../../component/Footer";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
 
 const SignIn = () => {
   const { signInUser, signInWithGoogle, signInWithGitHub } =
@@ -101,7 +102,11 @@ const SignIn = () => {
   };
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <Helmet>
         <title>Hotel Serenity - Sign In</title>
         <meta
@@ -113,97 +118,149 @@ const SignIn = () => {
       <div className="max-w-7xl mx-auto">
         <Navbar></Navbar>
       </div>
-      <div className="hero min-h-screen flex justify-center items-center">
-        <div className="card bg-base-100 w-full max-w-lg shadow-2xl p-8">
-          <form onSubmit={handleSignIn} className="space-y-4">
-            <h1 className="text-5xl font-bold text-[#373737] text-center mb-6">
-              Sign In
-            </h1>
+      <div 
+        className="min-h-screen flex justify-center items-center pt-40 pb-20 px-4"
+        style={{
+          backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/2869215/pexels-photo-2869215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="card w-full max-w-lg backdrop-blur-md bg-white/30 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] p-10 rounded-3xl border border-white/20"
+        >
+          <form onSubmit={handleSignIn} className="space-y-7">
+            <motion.h1 
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-4xl md:text-5xl font-bold text-white text-center mb-10 play-fair"
+            >
+              Welcome Back
+            </motion.h1>
 
             {/* Email Input */}
-            <div className="form-control">
+            <motion.div 
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="form-control relative"
+            >
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text text-white font-medium tracking-wide">Email</span>
               </label>
               <input
                 type="email"
                 name="email"
                 placeholder="Enter your email"
-                className="input input-bordered"
+                className="input h-12 bg-white/10 border-2 border-white/20 text-white placeholder:text-gray-300 backdrop-blur-sm focus:bg-white/20 focus:border-white transition-all duration-300 rounded-xl px-4"
                 required
               />
-            </div>
+            </motion.div>
 
             {/* Password Input */}
-            <div className="form-control">
+            <motion.div 
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="form-control relative"
+            >
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text text-white font-medium tracking-wide">Password</span>
               </label>
               <input
                 type="password"
                 name="password"
-                placeholder="Enter your password"
-                className="input input-bordered"
+                placeholder="Enter your password" 
+                className="input h-12 bg-white/10 border-2 border-white/20 text-white placeholder:text-gray-300 backdrop-blur-sm focus:bg-white/20 focus:border-white transition-all duration-300 rounded-xl px-4"
                 required
               />
-              {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-            </div>
+              {error && <p className="text-red-300 text-sm mt-2 font-medium">{error}</p>}
+            </motion.div>
+
             {/* Forgot Password */}
-            <div className="mb-4 text-right">
-              <a href="#" className="text-[#373737] hover:underline text-xs">
+            <div className="text-right">
+              <a href="#" className="text-white/80 hover:text-white text-sm transition-colors hover:underline">
                 Forgot Password?
               </a>
             </div>
 
             {/* Submit Button */}
-            <div className="form-control">
-              <button className="btn bg-[#c19b77] text-white font-bold text-xl ">
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="form-control mt-8"
+            >
+              <button className="btn h-12 bg-gradient-to-r from-[#c19b77] to-[#a17c5c] hover:from-[#a17c5c] hover:to-[#8b6346] text-white font-bold text-xl border-none transition-all duration-500 transform hover:scale-[1.02] rounded-xl shadow-lg hover:shadow-xl">
                 Sign In
               </button>
-            </div>
+            </motion.div>
           </form>
 
+          <div className="relative my-8">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-white/20"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-4 text-white/80 bg-transparent backdrop-blur-sm">Or continue with</span>
+            </div>
+          </div>
+
           {/* Google Login Button */}
-          <div className="form-control mt-4">
+          <motion.div 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.7 }}
+            className="form-control"
+          >
             <button
               type="button"
               onClick={handleGoogleSignIn}
-              className="btn bg-white border-[#373737] rounded shadow-none text-sm md:text-lg font-medium w-full flex items-center justify-center gap-2"
+              className="btn h-12 bg-white hover:bg-gray-50 border-none rounded-xl shadow-lg text-base font-medium w-full flex items-center justify-center gap-3 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl"
             >
-              <img src={google} className="h-5 w-5" />
-              <span className="text-[#373737] font-medium">
+              <img src={google} className="h-6 w-6" />
+              <span className="text-gray-700 font-medium">
                 Sign in with Google
               </span>
             </button>
-          </div>
+          </motion.div>
 
           {/* GitHub Login Button */}
-          <div className="form-control mt-4">
+          <motion.div 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="form-control mt-4"
+          >
             <button
               type="button"
               onClick={handleGitHubSignIn}
-              className="btn bg-white border-[#373737] rounded shadow-none text-sm md:text-lg font-medium w-full flex items-center justify-center gap-2"
+              className="btn h-12 bg-[#24292e] hover:bg-[#1a1e22] text-white border-none rounded-xl shadow-lg text-base font-medium w-full flex items-center justify-center gap-3 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl"
             >
-              <img src={github} className="h-5 w-5" />
-              <span className="text-[#373737] font-medium">
+              <img src={github} className="h-6 w-6" />
+              <span className="font-medium">
                 Sign in with GitHub
               </span>
             </button>
 
-            <p className="text-xs md:text-sm font-medium text-center text-[#403F3F] mt-7">
-              Don’t Have An Account?{" "}
+            <p className="text-sm font-medium text-center text-white mt-8">
+              Don't Have An Account?{" "}
               <Link
                 to="/register"
-                className="text-[#c19b77] font-semibold underline"
+                className="text-[#c19b77] hover:text-[#a17c5c] font-semibold underline decoration-2 underline-offset-2 transition-colors"
               >
                 Register
               </Link>
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
-      <Footer></Footer>
-    </div>
+      {/* <Footer></Footer> */}
+    </motion.div>
   );
 };
 

@@ -269,9 +269,6 @@ const RoomDetails = () => {
                         <div>
                           <h3 className="text-xl play-fair text-gray-800 font-medium">{room.name}</h3>
                           <p className="text-[#C19B77] font-semibold my-2">${room.price}/night</p>
-                          <button className="bg-[#C19B77] text-white py-1.5 px-4 rounded-md text-xs tracking-wider font-medium hover:bg-[#a78560] transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-md">
-                            BOOK NOW
-                          </button>
                         </div>
                       </motion.div>
                     ))}

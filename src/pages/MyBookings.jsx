@@ -7,6 +7,7 @@ import { MdCancel } from "react-icons/md";
 import { MdRateReview } from "react-icons/md";
 import { MdSystemSecurityUpdateGood } from "react-icons/md";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext); // Current logged-in user
@@ -195,7 +196,11 @@ const MyBookings = () => {
   }
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
         <Helmet>
         <title>Hotel Serenity - My Bookings</title>
         <meta
@@ -204,298 +209,389 @@ const MyBookings = () => {
         />
         <meta name="keywords" content="bookings, hotel, serenity, manage" />
       </Helmet>
-      <div className="max-w-7xl mx-auto px-5">
-        <Navbar />
-        <div>
-          <h1 className="text-4xl play-fair font-light my-10">My Bookings</h1>
+      <Navbar />
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        style={{
+          backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.66), rgba(0, 0, 0, 0.37)), url('https://images.pexels.com/photos/2869215/pexels-photo-2869215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
+          height: "60vh",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+        className="flex flex-col justify-center items-center px-5"
+      >
+        <motion.h1 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="uppercase play-fair text-4xl md:text-6xl leading-[4rem] text-white mt-2"
+        >
+          My Bookings
+        </motion.h1>
+        {/* <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-white leading-[1.4rem] mt-4 md:mt-6 text-xs md:text-base font-light tracking-wider w-full lg:w-1/2 mx-auto text-center"
+        >
+          Get in touch with us for any inquiries or bookings. Our team is here
+          to assist you with your stay and provide the best service possible.
+        </motion.p> */}
+      </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="py-24"
+        >
 
           {/* Card Layout for Small and Medium Devices */}
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 lg:hidden">
-            {bookings.map((booking) => (
-              <div key={booking._id} className="bg-white border border-gray-300 rounded-lg p-4">
-              {/* Image */}
-              <div className="mb-4">
-                {booking.room && booking.room.image ? (
-                  <img
-                    src={booking.room.image}
-                    alt={booking.room.name}
-                    className="w-full h-40 object-cover rounded"
-                  />
-                ) : (
-                  <span>No Image</span>
-                )}
-              </div>
+          <motion.div 
+            className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ staggerChildren: 0.1 }}
+          >
+            {bookings.map((booking, index) => (
+              <motion.div
+                key={booking._id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                className="bg-white border border-gray-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                {/* Image */}
+                <div className="mb-4 overflow-hidden rounded-lg">
+                  {booking.room && booking.room.image ? (
+                    <motion.img
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                      src={booking.room.image}
+                      alt={booking.room.name}
+                      className="w-full h-48 object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
+                      <span className="text-gray-400">No Image</span>
+                    </div>
+                  )}
+                </div>
             
-              {/* Room Name and Price */}
-              <div className="flex justify-between mb-4">
-                <h3 className="font-semibold text-lg play-fair text-[#373737]">{booking.room ? booking.room.name : "Unknown Room"}</h3>
-                <p className="text-[#ACACAC] font-light tracking-[0.1rem] text-xs md:text-sm">${booking.room ? booking.room.price : "N/A"}/night</p>
-              </div>
+                {/* Room Name and Price */}
+                <div className="flex justify-between mb-4">
+                  <h3 className="font-semibold text-xl play-fair text-gray-800">{booking.room ? booking.room.name : "Unknown Room"}</h3>
+                  <p className="text-[#c19b77] font-medium">${booking.room ? booking.room.price : "N/A"}/night</p>
+                </div>
             
-              {/* Check-In and Check-Out Dates */}
-              <div className="justify-between mb-4 space-y-2">
-                <p className="text-[#ACACAC] font-light tracking-[0.1rem] text-xs md:text-sm">Check-In: {booking.checkIn}</p>
-                <p className="text-[#ACACAC] font-light tracking-[0.1rem] text-xs md:text-sm">Check-Out: {booking.checkOut}</p>
-              </div>
+                {/* Check-In and Check-Out Dates */}
+                <div className="space-y-2 mb-4">
+                  <p className="text-gray-600">Check-In: <span className="font-medium">{booking.checkIn}</span></p>
+                  <p className="text-gray-600">Check-Out: <span className="font-medium">{booking.checkOut}</span></p>
+                </div>
             
-              {/* Guests and Total */}
-              <div className="flex justify-between mb-4">
-                <p className="text-[#ACACAC] font-light tracking-[0.1rem] text-xs md:text-sm">Guests: {booking.guests}</p>
-                <p className="text-[#ACACAC] font-light tracking-[0.1rem] text-xs md:text-sm">Total: ${booking.totalPrice}</p>
-              </div>
+                {/* Guests and Total */}
+                <div className="flex justify-between mb-6">
+                  <p className="text-gray-600">Guests: <span className="font-medium">{booking.guests}</span></p>
+                  <p className="text-[#c19b77] font-semibold">Total: ${booking.totalPrice}</p>
+                </div>
             
-              {/* Action Buttons */}
-              <div className="flex justify-around items-center mt-6 lg:mt-0">
-                <button
-                  onClick={() => openModal(booking)}
-                  className="text-[#c19b77] text-2xl"
-                >
-                  <MdCancel />
-                </button>
+                {/* Action Buttons */}
+                <div className="flex justify-around items-center">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => openModal(booking)}
+                    className="text-red-500 text-2xl hover:text-red-600 transition-colors"
+                  >
+                    <MdCancel />
+                  </motion.button>
             
-                <button
-                  onClick={() => openReviewModal(booking)}
-                  className="text-[#373737] text-2xl"
-                >
-                  <MdRateReview />
-                </button>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => openReviewModal(booking)}
+                    className="text-[#c19b77] text-2xl hover:text-[#a78560] transition-colors"
+                  >
+                    <MdRateReview />
+                  </motion.button>
             
-                <button
-                  onClick={() => openUpdateDateModal(booking)}
-                  className="text-[#c19b77] text-2xl"
-                >
-                  <MdSystemSecurityUpdateGood />
-                </button>
-              </div>
-            </div>
-            
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => openUpdateDateModal(booking)}
+                    className="text-green-500 text-2xl hover:text-green-600 transition-colors"
+                  >
+                    <MdSystemSecurityUpdateGood />
+                  </motion.button>
+                </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Table Layout for Large and Extra Large Devices */}
-          <div className="hidden lg:block overflow-x-auto">
-            <table className="table-auto w-full border-collapse border border-gray-300">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="hidden lg:block overflow-x-auto rounded-xl shadow-lg"
+          >
+            <table className="w-full border-collapse bg-white">
               <thead>
-                <tr className="bg-[#c19b77] text-white">
-                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">Image</th>
-                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">
-                    Room Name
-                  </th>
-                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">Price</th>
-                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">Check-In</th>
-                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">
-                    Check-Out
-                  </th>
-                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">Guests</th>
-                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">Total</th>
-                  <th className="border border-gray-300 px-4 py-2 text-base font-normal tracking-[0.1rem]">Action</th>
+                <tr className="bg-gradient-to-r from-[#c19b77] to-[#a78560] text-white">
+                  <th className="px-6 py-4 text-left text-sm font-medium">Image</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium">Room Name</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium">Price</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium">Check-In</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium">Check-Out</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium">Guests</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium">Total</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium">Action</th>
                 </tr>
               </thead>
-              <tbody>
-                {bookings.map((booking) => (
-                  <tr key={booking._id}>
-                    <td className="border border-gray-300 px-4 py-2">
+              <tbody className="divide-y divide-gray-200">
+                {bookings.map((booking, index) => (
+                  <motion.tr 
+                    key={booking._id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ backgroundColor: "#f9fafb" }}
+                    className="hover:bg-gray-50 transition-colors"
+                  >
+                    <td className="px-6 py-4">
                       {booking.room && booking.room.image ? (
                         <img
                           src={booking.room.image}
                           alt={booking.room.name}
-                          className="h-20 w-20 object-cover rounded"
+                          className="h-20 w-20 object-cover rounded-lg shadow-md"
                         />
                       ) : (
                         <span>No Image</span>
                       )}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
+                    <td className="px-6 py-4 text-gray-800 font-medium">
                       {booking.room ? booking.room.name : "Unknown Room"}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
+                    <td className="px-6 py-4 text-[#c19b77]">
                       ${booking.room ? booking.room.price : "N/A"}/night
                     </td>
-                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
+                    <td className="px-6 py-4 text-gray-600">
                       {booking.checkIn}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
+                    <td className="px-6 py-4 text-gray-600">
                       {booking.checkOut}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
+                    <td className="px-6 py-4 text-gray-600">
                       {booking.guests}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
+                    <td className="px-6 py-4 text-[#c19b77] font-medium">
                       ${booking.totalPrice}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2 text-[#ACACAC] font-light text-base tracking-[0.1rem]">
-                      <div className="flex justify-between items-center">
-                        <button
+                    <td className="px-6 py-4">
+                      <div className="flex space-x-4">
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
                           onClick={() => openModal(booking)}
-                          className="text-[#c19b77] text-3xl"
+                          className="text-red-500 text-2xl hover:text-red-600 transition-colors"
                         >
                           <MdCancel />
-                        </button>
+                        </motion.button>
 
-                        <button
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
                           onClick={() => openReviewModal(booking)}
-                          className="text-[#373737] text-3xl"
+                          className="text-[#c19b77] text-2xl hover:text-[#a78560] transition-colors"
                         >
                           <MdRateReview />
-                        </button>
+                        </motion.button>
 
-                        <button
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
                           onClick={() => openUpdateDateModal(booking)}
-                          className="text-[#c19b77] text-3xl"
+                          className="text-green-500 text-2xl hover:text-green-600 transition-colors"
                         >
                           <MdSystemSecurityUpdateGood />
-                        </button>
+                        </motion.button>
                       </div>
                     </td>
-                  </tr>
+                  </motion.tr>
                 ))}
               </tbody>
             </table>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        {/* Confirmation Modal */}
+        {/* Modals */}
         <Modal
           isOpen={isModalOpen}
           onRequestClose={closeModal}
-          style={{ content: { width: "40%", margin: "auto", padding: "20px", background: "#c19b77" } }}
+          className="modal-content bg-white rounded-2xl p-8 max-w-md mx-auto mt-20"
+          overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
         >
-          <div>
-          <h2 className="text-2xl font-bold py-4 text-center play-fair text-[#373737] tracking-wider">Confirm Cancellation</h2>
-          <p className="text-center text-base text-[#373737] font-light tracking-[0.1rem]">Are you sure you want to cancel this booking?</p>
-          </div>
-          <div className="mt-5 flex justify-center gap-4">
-            <button
-              onClick={handleCancelBooking}
-              className="bg-[#373737] text-white uppercase text-sm py-2 px-6 rounded-sm tracking-[0.1rem]"
-            >
-              Confirm
-            </button>
-            <button
-              onClick={closeModal}
-              className="border border-[#373737] text-sm uppercase rounded-sm tracking-[0.1rem] text-[#373737] py-2 px-6"
-            >
-              Cancel
-            </button>
-          </div>
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+          >
+            <h2 className="text-2xl font-bold mb-6 text-center play-fair text-gray-800">Confirm Cancellation</h2>
+            <p className="text-center text-gray-600 mb-8">Are you sure you want to cancel this booking?</p>
+            <div className="flex justify-center gap-4">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleCancelBooking}
+                className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition-colors"
+              >
+                Confirm
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={closeModal}
+                className="border border-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                Cancel
+              </motion.button>
+            </div>
+          </motion.div>
         </Modal>
 
         {/* Review Modal */}
         <Modal
           isOpen={isReviewModalOpen}
           onRequestClose={closeReviewModal}
-          style={{ content: { width: "40%" , margin: "auto", padding: "20px", background: "#373737" } }}
+          className="modal-content bg-white rounded-2xl p-8 max-w-md mx-auto mt-20"
+          overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
         >
-          <h2 className="text-2xl font-bold py-4 text-center play-fair text-[#c19b77] tracking-wider">Submit Your Review</h2>
-          <div className="mb-4">
-            <label className="block text-[#c19b77] font-normal text-base tracking-[0.1rem]">Username</label>
-            <input
-              type="text"
-              value={user.email} // Display logged-in user's name
-              readOnly
-              className="w-full p-2 rounded-sm mt-1 text-[#373737] font-normal tracking-wider bg-white cursor-not-allowed"
-            />
-          </div>
-          <form>
-            <div className="mb-4">
-              <label className="block text-[#c19b77] font-normal text-base tracking-[0.1rem]">Rating (1-5)</label>
-              <input
-                type="number"
-                min="1"
-                max="5"
-                value={reviewForm.rating}
-                onChange={(e) =>
-                  setReviewForm({ ...reviewForm, rating: e.target.value })
-                }
-                className="w-full p-2 rounded-sm mt-1 text-[#373737] font-normal tracking-wider bg-white"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-[#c19b77] font-normal text-base tracking-[0.1rem]">Comment:</label>
-              <textarea
-                value={reviewForm.comment}
-                onChange={(e) =>
-                  setReviewForm({ ...reviewForm, comment: e.target.value })
-                }
-                rows="4"
-                className="w-full p-2 rounded-sm mt-1 text-[#373737] font-normal tracking-wider bg-white"
-                required
-              ></textarea>
-            </div>
-            <div className="flex justify-end gap-4">
-              <button
-                type="button"
-                onClick={handleReviewSubmit}
-                className="bg-[#c19b77] text-white uppercase  py-2 px-6 rounded-sm tracking-[0.1rem]"
-              >
-                Submit
-              </button>
-              <button
-                type="button"
-                onClick={closeReviewModal}
-                className="border border-[#c19b77] text-[#c19b77] uppercase py-2 px-6 rounded-sm tracking-[0.1rem]"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+          >
+            <h2 className="text-2xl font-bold mb-6 text-center play-fair text-gray-800">Submit Your Review</h2>
+            <form className="space-y-6">
+              <div>
+                <label className="block text-gray-700 mb-2">Username</label>
+                <input
+                  type="text"
+                  value={user.email}
+                  readOnly
+                  className="w-full p-3 border border-gray-300 rounded-lg bg-gray-50"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Rating (1-5)</label>
+                <input
+                  type="number"
+                  min="1"
+                  max="5"
+                  value={reviewForm.rating}
+                  onChange={(e) => setReviewForm({ ...reviewForm, rating: e.target.value })}
+                  className="w-full p-3 border border-gray-300 rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Comment</label>
+                <textarea
+                  value={reviewForm.comment}
+                  onChange={(e) => setReviewForm({ ...reviewForm, comment: e.target.value })}
+                  rows="4"
+                  className="w-full p-3 border border-gray-300 rounded-lg"
+                ></textarea>
+              </div>
+              <div className="flex justify-end gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  type="button"
+                  onClick={handleReviewSubmit}
+                  className="bg-[#c19b77] text-white px-6 py-2 rounded-lg hover:bg-[#a78560] transition-colors"
+                >
+                  Submit
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  type="button"
+                  onClick={closeReviewModal}
+                  className="border border-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Cancel
+                </motion.button>
+              </div>
+            </form>
+          </motion.div>
         </Modal>
 
         {/* Update Date Modal */}
         <Modal
           isOpen={isUpdateModalOpen}
           onRequestClose={closeUpdateModal}
-          style={{ content: { width: "50%", margin: "auto", padding: "20px", background: "#c19b77" } }}
+          className="modal-content bg-white rounded-2xl p-8 max-w-md mx-auto mt-20"
+          overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
         >
-          <h2 className="text-2xl font-bold py-4 text-center play-fair text-[#373737] tracking-wider">Update Booking Dates</h2>
-          <form>
-            <div className="mb-4">
-              <label className="block text-[#373737] font-normal text-base tracking-[0.1rem]">Check-In Date:</label>
-              <input
-                type="date"
-                value={updateForm.checkIn}
-                onChange={(e) =>
-                  setUpdateForm({ ...updateForm, checkIn: e.target.value })
-                }
-                className="w-full text-[#373737] p-2 mt-1"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-[#373737] font-normal text-base tracking-[0.1rem]">Check-Out Date:</label>
-              <input
-                type="date"
-                value={updateForm.checkOut}
-                onChange={(e) =>
-                  setUpdateForm({ ...updateForm, checkOut: e.target.value })
-                }
-                className="w-full text-[#373737] p-2 mt-1"
-                required
-              />
-            </div>
-            <div className="flex justify-end gap-4">
-              <button
-                type="button"
-                onClick={handleDateUpdate}
-                className="bg-[#373737] text-white uppercase text-sm py-2 px-6 rounded-sm tracking-[0.1rem]"
-              >
-                Update
-              </button>
-              <button
-                type="button"
-                onClick={closeUpdateModal}
-                className="border border-[#373737] text-sm uppercase rounded-sm tracking-[0.1rem] text-[#373737] py-2 px-6"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+          >
+            <h2 className="text-2xl font-bold mb-6 text-center play-fair text-gray-800">Update Booking Dates</h2>
+            <form className="space-y-6">
+              <div>
+                <label className="block text-gray-700 mb-2">Check-In Date</label>
+                <input
+                  type="date"
+                  value={updateForm.checkIn}
+                  onChange={(e) => setUpdateForm({ ...updateForm, checkIn: e.target.value })}
+                  className="w-full p-3 border border-gray-300 rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Check-Out Date</label>
+                <input
+                  type="date"
+                  value={updateForm.checkOut}
+                  onChange={(e) => setUpdateForm({ ...updateForm, checkOut: e.target.value })}
+                  className="w-full p-3 border border-gray-300 rounded-lg"
+                />
+              </div>
+              <div className="flex justify-end gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  type="button"
+                  onClick={handleDateUpdate}
+                  className="bg-[#c19b77] text-white px-6 py-2 rounded-lg hover:bg-[#a78560] transition-colors"
+                >
+                  Update
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  type="button"
+                  onClick={closeUpdateModal}
+                  className="border border-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Cancel
+                </motion.button>
+              </div>
+            </form>
+          </motion.div>
         </Modal>
       </div>
 
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 
