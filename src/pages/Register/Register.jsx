@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../component/Banner/Navbar";
 import Footer from "../../component/Footer";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -81,7 +82,11 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <Helmet>
         <title>Hotel Serenity - Register</title>
         <meta
@@ -93,107 +98,155 @@ const Register = () => {
       <div className="max-w-7xl mx-auto">
         <Navbar></Navbar>
       </div>
-      <div className="hero min-h-screen">
-        <div className="hero-content flex-col lg:flex-row-reverse gap-10 items-center">
-          <div className="text-center lg:text-left w-1/3">
-            {/* You can add Lottie animations here */}
-          </div>
-          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <form onSubmit={handleRegister} className="card-body">
-              <h1 className="text-5xl font-bold text-[#373737]">Register now!</h1>
+      <div 
+        className="min-h-screen flex justify-center items-center pt-40 pb-20 px-4"
+        style={{
+          backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/2869215/pexels-photo-2869215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="card w-full max-w-lg backdrop-blur-md bg-white/30 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] p-10 rounded-3xl border border-white/20"
+        >
+          <form onSubmit={handleRegister} className="space-y-7">
+            <motion.h1 
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-4xl md:text-5xl font-bold text-white text-center mb-10 play-fair"
+            >
+              Create Account
+            </motion.h1>
 
+            <div className="grid grid-cols-2 gap-6">
               {/* First Name Input */}
-              <div className="form-control">
+              <motion.div 
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="form-control relative"
+              >
                 <label className="label">
-                  <span className="label-text">First Name</span>
+                  <span className="label-text text-white font-medium tracking-wide">First Name</span>
                 </label>
                 <input
                   type="text"
                   name="firstName"
                   placeholder="Enter your first name"
-                  className="input input-bordered"
+                  className="input h-12 bg-white/10 border-2 border-white/20 text-white placeholder:text-gray-300 backdrop-blur-sm focus:bg-white/20 focus:border-white transition-all duration-300 rounded-xl px-4"
                   required
                 />
-              </div>
+              </motion.div>
 
               {/* Last Name Input */}
-              <div className="form-control">
+              <motion.div 
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="form-control relative"
+              >
                 <label className="label">
-                  <span className="label-text">Last Name</span>
+                  <span className="label-text text-white font-medium tracking-wide">Last Name</span>
                 </label>
                 <input
                   type="text"
                   name="lastName"
                   placeholder="Enter your last name"
-                  className="input input-bordered"
+                  className="input h-12 bg-white/10 border-2 border-white/20 text-white placeholder:text-gray-300 backdrop-blur-sm focus:bg-white/20 focus:border-white transition-all duration-300 rounded-xl px-4"
                   required
                 />
-              </div>
+              </motion.div>
 
               {/* Email Input */}
-              <div className="form-control">
+              <motion.div 
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="form-control relative"
+              >
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text text-white font-medium tracking-wide">Email</span>
                 </label>
                 <input
                   type="email"
                   name="email"
                   placeholder="Enter your email"
-                  className="input input-bordered"
+                  className="input h-12 bg-white/10 border-2 border-white/20 text-white placeholder:text-gray-300 backdrop-blur-sm focus:bg-white/20 focus:border-white transition-all duration-300 rounded-xl px-4"
                   required
                 />
-              </div>
+              </motion.div>
 
               {/* Photo URL Input */}
-              <div className="form-control">
+              <motion.div 
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.7 }}
+                className="form-control relative"
+              >
                 <label className="label">
-                  <span className="label-text">Profile Photo URL</span>
+                  <span className="label-text text-white font-medium tracking-wide">Profile Photo URL</span>
                 </label>
                 <input
                   type="url"
                   name="photoURL"
                   placeholder="Enter your profile photo URL"
-                  className="input input-bordered"
+                  className="input h-12 bg-white/10 border-2 border-white/20 text-white placeholder:text-gray-300 backdrop-blur-sm focus:bg-white/20 focus:border-white transition-all duration-300 rounded-xl px-4"
                   value={photoURL}
                   onChange={(e) => setPhotoURL(e.target.value)}
                 />
-              </div>
+              </motion.div>
 
               {/* Password Input */}
-              <div className="form-control">
+              <motion.div 
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="form-control relative col-span-2"
+              >
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text text-white font-medium tracking-wide">Password</span>
                 </label>
                 <input
                   type="password"
                   name="password"
                   placeholder="Enter your password"
-                  className="input input-bordered"
+                  className="input h-12 bg-white/10 border-2 border-white/20 text-white placeholder:text-gray-300 backdrop-blur-sm focus:bg-white/20 focus:border-white transition-all duration-300 rounded-xl px-4"
                   required
                 />
+                {error && <p className="text-red-300 text-sm mt-2 font-medium">{error}</p>}
+              </motion.div>
+            </div>
 
-                {/* Error Message Display */}
-                {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-              </div>
+            {/* Submit Button */}
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.9 }}
+              className="form-control mt-8"
+            >
+              <button className="btn h-12 bg-gradient-to-r from-[#c19b77] to-[#a17c5c] hover:from-[#a17c5c] hover:to-[#8b6346] text-white font-bold text-xl border-none transition-all duration-500 transform hover:scale-[1.02] rounded-xl shadow-lg hover:shadow-xl">
+                Register
+              </button>
+            </motion.div>
 
-              {/* Submit Button */}
-              <div className="form-control mt-6">
-                <button className="btn bg-[#c19b77] text-white font-bold text-xl ">
-                  Register
-                </button>
-              </div>
-            </form>
-            <p className="text-xs md:text-sm font-medium text-center text-[#403F3F] pb-5">
+            <p className="text-sm font-medium text-center text-white mt-8">
               Already Have An Account?{" "}
-              <Link to="/signin" className="text-[#c19b77] font-semibold underline">
-                Signin
+              <Link
+                to="/signin"
+                className="text-[#c19b77] hover:text-[#a17c5c] font-semibold underline decoration-2 underline-offset-2 transition-colors"
+              >
+                Sign In
               </Link>
             </p>
-          </div>
-        </div>
+          </form>
+        </motion.div>
       </div>
-      <Footer></Footer>
-    </div>
+      {/* <Footer></Footer> */}
+    </motion.div>
   );
 };
 
